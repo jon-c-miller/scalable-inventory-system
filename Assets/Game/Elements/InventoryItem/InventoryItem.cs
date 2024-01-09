@@ -7,4 +7,5 @@ public class InventoryItem : MonoBehaviour
     public string Name => properties.Name;
     public string Description => properties.Description;
     public ItemIDs Type => properties.Type;
+    public SInventoryItemStat[] Stats => properties.Stats;
 }

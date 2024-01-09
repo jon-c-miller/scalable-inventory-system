@@ -13,6 +13,7 @@ public enum ItemStatIDs
 {
     Size,
     Quality,
+    Quantity,
     EffectRange,
 
     ManaIncrease,

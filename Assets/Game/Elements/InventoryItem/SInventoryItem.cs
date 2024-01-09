@@ -7,7 +7,6 @@ public class SInventoryItem : ScriptableObject
     public string Description;
     public ItemIDs Type;
     [Space]
-    public bool IsStackable;
     public int CurrentAmount;
 }
 

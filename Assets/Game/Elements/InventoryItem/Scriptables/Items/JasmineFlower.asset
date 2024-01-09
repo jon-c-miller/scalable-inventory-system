@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2314fba57a166a4e8984026bf79211a, type: 3}
   m_Name: JasmineFlower
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Jasmine Flower
+  Description: A lovely and fragrant jasmine flower in its prime.
   Type: 0
   Stats:
   - {fileID: 11400000, guid: 49960d620195ceb42bc15a9ddfe2d5a5, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}

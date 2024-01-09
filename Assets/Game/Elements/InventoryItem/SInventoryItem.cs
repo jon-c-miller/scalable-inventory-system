@@ -12,7 +12,12 @@ public class SInventoryItem : ScriptableObject
 
 public enum ItemIDs
 {
+    // Aesthetica
     JasmineFlower,
+
+    // Gear
     CrystalFocus,
+
+    // Consumables
     SavoryPastry,
 }

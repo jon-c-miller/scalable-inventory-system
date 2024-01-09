@@ -11,14 +11,17 @@ public class SInventoryItemStat : ScriptableObject
 
 public enum ItemStatIDs
 {
+    // Common modifiers
     Size,
     Quality,
     Quantity,
     EffectRange,
 
+    // Persistent increases while under effect of item (equipped, near, etc.)
     ManaIncrease,
     DamageIncrease,
+    ComfortIncrease,
 
+    // One shot updates upon consumption
     HealingAmount,
-    ComfortAmount,
 }

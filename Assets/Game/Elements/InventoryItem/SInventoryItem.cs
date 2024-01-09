@@ -6,8 +6,6 @@ public class SInventoryItem : ScriptableObject
     public string Name;
     public string Description;
     public ItemIDs Type;
-    [Space]
-    public int CurrentAmount;
 }
 
 public enum ItemIDs

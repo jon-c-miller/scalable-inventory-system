@@ -23,7 +23,9 @@ public static class InventoryItemGenerator
             // Randomize stat values based on low/high constraints and desired level
             int randomBaseValue = Random.Range(newStat.ValueLow, newStat.ValueHigh + 1);
             int valueAfterLevelModifier = randomBaseValue * level;
-            int valueAfterPerLevelIncrease = valueAfterLevelModifier * newStat.PerLevelIncrease;
+
+            // Update stat value based on item level if applicable
+            int valueAfterPerLevelIncrease = valueAfterLevelModifier + (1 * newStat.PerLevelIncrease);
 
             // Add to stats collection
             generatedStats.Add(new InventoryItemStat(newStat.Name, newStat.Description, newStat.Type, valueAfterPerLevelIncrease));

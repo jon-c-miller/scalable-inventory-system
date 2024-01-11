@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item/Create New Item")]
@@ -6,7 +7,7 @@ public class SInventoryItem : ScriptableObject
     public string Name;
     public string Description;
     public ItemIDs Type;
-    public InventoryItemStat[] PossibleStats;
+    public List<SInventoryItemStat> PossibleStats = new();
 }
 
 public enum ItemIDs
@@ -21,4 +22,11 @@ public enum ItemIDs
 
     // Consumables
     SavoryPastry,
+}
+
+public enum ItemQualityIDs
+{
+    Mundane = 1,
+    Enchanted = 2,
+    Mystical = 2,
 }

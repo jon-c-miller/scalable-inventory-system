@@ -6,7 +6,7 @@ public class SInventoryItem : ScriptableObject
     public string Name;
     public string Description;
     public ItemIDs Type;
-    public SInventoryItemStat[] Stats;
+    public InventoryItemStat[] PossibleStats;
 }
 
 public enum ItemIDs

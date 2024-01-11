@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> Generates an item with randomized stats based on a given type, quality, and level. </summary>
 public class InventoryItemGenerator : MonoBehaviour
 {
     public InventoryItem CreateInventoryItem(ItemIDs type, ItemQualityIDs quality, int level)
@@ -19,10 +20,13 @@ public class InventoryItemGenerator : MonoBehaviour
 
             SInventoryItemStat newStat = itemTemplate.PossibleStats[i];
 
-            // Randomize stat values based on low/high constraints and desired level level
-            int value = 1;
+            // Randomize stat values based on low/high constraints and desired level
+            int randomBaseValue = Random.Range(newStat.ValueLow, newStat.ValueHigh + 1);
+            int valueAfterLevelModifier = randomBaseValue * level;
+            int valueAfterPerLevelIncrease = valueAfterLevelModifier * newStat.PerLevelIncrease;
 
-            generatedStats.Add(new InventoryItemStat(newStat.Name, newStat.Description, newStat.Type, value));
+            // Add to stats collection
+            generatedStats.Add(new InventoryItemStat(newStat.Name, newStat.Description, newStat.Type, valueAfterPerLevelIncrease));
         }
 
         return new InventoryItem(itemTemplate.Name, itemTemplate.Description, itemTemplate.Type, quality, level, generatedStats);

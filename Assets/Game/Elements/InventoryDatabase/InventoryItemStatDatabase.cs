@@ -6,14 +6,14 @@ public class InventoryItemStatDatabase : MonoBehaviour
 {
     [SerializeField] SInventoryItemStat[] itemStatTemplates;
     
-    Dictionary<ItemStatIDs, SInventoryItemStat> itemStatDatabase = new();
+    public static readonly Dictionary<ItemStatIDs, SInventoryItemStat> ItemStatDatabase = new();
 
     void BuildDatabase()
     {
         // Map all scriptable object item stat templates to their types for simple retrieval by stat id
         for (int i = 0; i < itemStatTemplates.Length; i++)
         {
-            itemStatDatabase.Add(itemStatTemplates[i].Type, itemStatTemplates[i]);
+            ItemStatDatabase.Add(itemStatTemplates[i].Type, itemStatTemplates[i]);
         }
     }
 

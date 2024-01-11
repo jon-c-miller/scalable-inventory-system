@@ -43,6 +43,15 @@ public class CanvasItemReader : MonoBehaviour
         return "";
     }
 
+    void Awake()
+    {
+        // Initialize text for properties
+        for (int i = 0; i < propertyTexts.Length; i++)
+        {
+            propertyTexts[i].text = "";
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(updateUIValuesFromItem))

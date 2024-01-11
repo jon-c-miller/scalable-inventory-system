@@ -16,5 +16,5 @@ MonoBehaviour:
   Description: The amount of this item.
   Type: 2
   ValueLow: 1
-  ValueHigh: 1
+  ValueHigh: 3
   PerLevelIncrease: 0

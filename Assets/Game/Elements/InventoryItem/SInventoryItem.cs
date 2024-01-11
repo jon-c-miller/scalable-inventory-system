@@ -11,6 +11,8 @@ public class SInventoryItem : ScriptableObject
 
 public enum ItemIDs
 {
+    None,
+
     // Aesthetica
     JasmineFlower,
 

@@ -15,3 +15,5 @@ MonoBehaviour:
   Name: Jasmine Flower
   Description: A lovely and fragrant jasmine flower in its prime.
   Type: 1
+  PossibleStats:
+  - {fileID: 11400000, guid: 49960d620195ceb42bc15a9ddfe2d5a5, type: 2}

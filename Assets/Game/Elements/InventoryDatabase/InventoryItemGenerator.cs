@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Generates an item with randomized stats based on a given type, quality, and level. </summary>
-public class InventoryItemGenerator : MonoBehaviour
+public static class InventoryItemGenerator
 {
-    public InventoryItem CreateInventoryItem(ItemIDs type, ItemQualityIDs quality, int level)
+    public static InventoryItem CreateInventoryItem(ItemIDs type, ItemQualityIDs quality, int level)
     {
         SInventoryItem itemTemplate = InventoryItemDatabase.ItemDatabase[type];
 

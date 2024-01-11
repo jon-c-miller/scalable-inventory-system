@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> Represents an item instance; stores identifying info as well as randomly generate properties. </summary>
 [System.Serializable]
 public struct InventoryItem
 {
+    [Header("Base Properties")]
     [SerializeField] string itemName;
     [SerializeField] string itemDescription;
     [SerializeField] ItemIDs itemType;
-    [Space]
+
+    [Header("Generated Properties")]
     [SerializeField] ItemQualityIDs itemQuality;    // Determines stat count
-    [SerializeField] int itemLevel;                 // Determines stats' values based on their range constraints
+    [SerializeField, Range(1, 20)] int itemLevel;   // Determines stats' values based on their range constraints
     [SerializeField] InventoryItemStat[] itemStats;
 
     public readonly string ItemName => itemName;

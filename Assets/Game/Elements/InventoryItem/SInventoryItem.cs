@@ -28,5 +28,5 @@ public enum ItemQualityIDs
 {
     Mundane = 1,
     Enchanted = 2,
-    Mystical = 2,
+    Mystical = 3,
 }

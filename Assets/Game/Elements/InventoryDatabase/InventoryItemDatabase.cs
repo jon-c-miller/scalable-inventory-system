@@ -6,7 +6,7 @@ public class InventoryItemDatabase : MonoBehaviour
 {
     [SerializeField] SInventoryItem[] itemTemplates;
     
-    public static readonly Dictionary<ItemIDs, SInventoryItem> ItemDatabase = new();
+    public static readonly Dictionary<ItemTypes, SInventoryItem> ItemDatabase = new();
 
     void BuildDatabase()
     {

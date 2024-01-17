@@ -6,9 +6,9 @@ using UnityEngine;
 public struct InventoryItem
 {
     [Header("Base Properties")]
-    [SerializeField] string itemName;
-    [SerializeField] string itemDescription;
-    [SerializeField] ItemIDs itemType;
+    [SerializeField] string itemName;           // Remove these properties? They aren't actually needed, and can be retrieved from
+    [SerializeField] string itemDescription;    // the item database via itemType
+    [SerializeField] ItemTypes itemType;
 
     [Header("Generated Properties")]
     [SerializeField] ItemQualityIDs itemQuality;    // Determines stat count
@@ -17,12 +17,12 @@ public struct InventoryItem
 
     public readonly string ItemName => itemName;
     public readonly string ItemDescription => itemDescription;
-    public readonly ItemIDs ItemType => itemType;
+    public readonly ItemTypes ItemType => itemType;
     public readonly int ItemLevel => itemLevel;
     public readonly ItemQualityIDs ItemQuality => itemQuality;
     public readonly InventoryItemStat[] ItemStats => itemStats;
 
-    public InventoryItem(string name, string description, ItemIDs type, ItemQualityIDs quality, int level, List<InventoryItemStat> stats)
+    public InventoryItem(string name, string description, ItemTypes type, ItemQualityIDs quality, int level, List<InventoryItemStat> stats)
     {
         itemName = name;
         itemDescription = description;

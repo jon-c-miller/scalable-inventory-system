@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary> Generates an item with randomized stats based on a given type, quality, and level. </summary>
 public static class InventoryItemGenerator
 {
-    public static InventoryItem CreateInventoryItem(ItemIDs type, ItemQualityIDs quality, int level)
+    public static InventoryItem CreateInventoryItem(ItemTypes type, ItemQualityIDs quality, int level)
     {
         SInventoryItem itemTemplate = InventoryItemDatabase.ItemDatabase[type];
 

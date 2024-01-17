@@ -7,7 +7,7 @@ public class CanvasItemReader : MonoBehaviour
     [SerializeField] InventoryItem instantiatedItem;
 
     [Header("Generation Test Parameters")]
-    [SerializeField] ItemIDs desiredItemType;
+    [SerializeField] ItemTypes desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
     [SerializeField, Range(1, 20)] int desiredItemLevel;
     
@@ -27,7 +27,7 @@ public class CanvasItemReader : MonoBehaviour
         for (int i = 0; i < instantiatedItem.ItemStats.Length; i++)
         {
             // Handle the quantity stat differently from other stats
-            if (instantiatedItem.ItemStats[i].Type == ItemStatIDs.Quantity)
+            if (instantiatedItem.ItemStats[i].Type == ItemStatTypes.Quantity)
             {
                 quantityText.text = instantiatedItem.ItemStats[i].Value.ToString();
             }

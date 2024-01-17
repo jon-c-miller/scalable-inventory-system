@@ -6,11 +6,11 @@ public class SInventoryItem : ScriptableObject
 {
     public string Name;
     public string Description;
-    public ItemIDs Type;
+    public ItemTypes Type;
     public List<SInventoryItemStat> PossibleStats = new();
 }
 
-public enum ItemIDs
+public enum ItemTypes
 {
     None,
 

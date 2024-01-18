@@ -16,7 +16,7 @@ public static class InventoryItemGenerator
         for (int i = 0; i < numberOfStats; i++)
         {
             // Prevent errors with not enough possible stats to match item quality
-            if (i > itemTemplate.PossibleStats.Count) break;
+            if (i >= itemTemplate.PossibleStats.Count) break;
 
             SInventoryItemStat newStat = itemTemplate.PossibleStats[i];
 

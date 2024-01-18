@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class CanvasItemReader : MonoBehaviour
 {
-    [SerializeField] KeyCode updateUIValuesFromItem = KeyCode.Space;
-    [Space]
-    [SerializeField] InventoryItem instantiatedItem;
-
-    [Header("Generation Test Parameters")]
-    [SerializeField] ItemTypes desiredItemType;
-    [SerializeField] ItemQualityIDs desiredItemQuality;
-    [SerializeField, Range(1, 20)] int desiredItemLevel;
-    
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
     [SerializeField] UnityEngine.UI.Text descriptionText;
@@ -18,31 +9,29 @@ public class CanvasItemReader : MonoBehaviour
     [SerializeField] UnityEngine.UI.Text qualityText;
     [SerializeField] UnityEngine.UI.Text[] propertyTexts;
 
-    public void UpdateTextBasedOnItem(InventoryItem newItem)
+    public void UpdateTextBasedOnItem(InventoryItem item)
     {
-        instantiatedItem = newItem;
-
         // Use the item's type to retrieve name and description from the item database
-        nameText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Name;
-        descriptionText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Description;
+        nameText.text = InventoryItemDatabase.ItemDatabase[item.ItemType].Name;
+        descriptionText.text = InventoryItemDatabase.ItemDatabase[item.ItemType].Description;
 
         // Keep track of the property text index to allow flexibility based on property type
         int propertyTextIndex = 0;
 
-        for (int i = 0; i < instantiatedItem.ItemStats.Length; i++)
+        for (int i = 0; i < item.ItemStats.Length; i++)
         {
             // Handle quality and quantity stat differently
-            if (instantiatedItem.ItemStats[i].Type == ItemStatTypes.Quantity)
+            if (item.ItemStats[i].Type == ItemStatTypes.Quantity)
             {
-                quantityText.text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
+                quantityText.text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
             }
-            else if (instantiatedItem.ItemStats[i].Type == ItemStatTypes.Quality)
+            else if (item.ItemStats[i].Type == ItemStatTypes.Quality)
             {
-                qualityText.text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
+                qualityText.text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
             }
             else
             {
-                propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
+                propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
                 propertyTextIndex++;
             }
         }
@@ -54,15 +43,6 @@ public class CanvasItemReader : MonoBehaviour
         for (int i = 0; i < propertyTexts.Length; i++)
         {
             propertyTexts[i].text = "";
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(updateUIValuesFromItem))
-        {
-            InventoryItem itemBasedOnDesiredType = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
-            UpdateTextBasedOnItem(itemBasedOnDesiredType);
         }
     }
 }

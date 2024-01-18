@@ -28,9 +28,9 @@ public static class InventoryItemGenerator
             int valueAfterPerLevelIncrease = valueAfterLevelModifier + (1 * newStat.PerLevelIncrease);
 
             // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(newStat.Name, newStat.Description, newStat.Type, valueAfterPerLevelIncrease));
+            generatedStats.Add(new InventoryItemStat(newStat.Type, valueAfterPerLevelIncrease));
         }
 
-        return new InventoryItem(itemTemplate.Name, itemTemplate.Description, itemTemplate.Type, quality, level, generatedStats);
+        return new InventoryItem(itemTemplate.Type, quality, level, generatedStats);
     }
 }

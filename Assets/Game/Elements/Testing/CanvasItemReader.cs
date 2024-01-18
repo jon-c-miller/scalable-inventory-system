@@ -21,8 +21,9 @@ public class CanvasItemReader : MonoBehaviour
     {
         instantiatedItem = newItem;
 
-        nameText.text = instantiatedItem.ItemName;
-        descriptionText.text = instantiatedItem.ItemDescription;
+        // Use the item's type to retrieve name and description from the item database
+        nameText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Name;
+        descriptionText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Description;
 
         for (int i = 0; i < instantiatedItem.ItemStats.Length; i++)
         {

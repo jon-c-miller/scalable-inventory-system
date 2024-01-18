@@ -11,6 +11,10 @@ public static class InventoryItemGenerator
         // Set stat count based on desired quality by using the enum entry as the amount of stats
         int numberOfStats = (int)quality;
 
+        // Ensure the level is valid
+        if (level < 1)
+            level = 1;
+
         // Generate stat types
         List<InventoryItemStat> generatedStats = new();
         for (int i = 0; i < numberOfStats; i++)

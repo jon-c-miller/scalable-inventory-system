@@ -686,7 +686,7 @@ MonoBehaviour:
   removeUniqueItemFromInventoryKey: 51
   desiredItemType: 1
   desiredItemQuality: 2
-  desiredItemLevel: 0
+  desiredItemLevel: 1
   lastInstantiatedItem:
     itemType: 0
     itemID: 0

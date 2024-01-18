@@ -18,7 +18,7 @@ public class InventoryTester : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemTypes desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
-    [SerializeField, Range(1, 20)] int desiredItemLevel;
+    [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
     [Space]
     [SerializeField] InventoryItem lastInstantiatedItem;
     [SerializeField] int itemIDToRemove;

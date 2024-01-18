@@ -15,6 +15,7 @@ public class CanvasItemReader : MonoBehaviour
     [SerializeField] UnityEngine.UI.Text nameText;
     [SerializeField] UnityEngine.UI.Text descriptionText;
     [SerializeField] UnityEngine.UI.Text quantityText;
+    [SerializeField] UnityEngine.UI.Text qualityText;
     [SerializeField] UnityEngine.UI.Text[] propertyTexts;
 
     public void UpdateTextBasedOnItem(InventoryItem newItem)
@@ -25,23 +26,26 @@ public class CanvasItemReader : MonoBehaviour
         nameText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Name;
         descriptionText.text = InventoryItemDatabase.ItemDatabase[newItem.ItemType].Description;
 
+        // Keep track of the property text index to allow flexibility based on property type
+        int propertyTextIndex = 0;
+
         for (int i = 0; i < instantiatedItem.ItemStats.Length; i++)
         {
-            // Handle the quantity stat differently from other stats
+            // Handle quality and quantity stat differently
             if (instantiatedItem.ItemStats[i].Type == ItemStatTypes.Quantity)
             {
-                quantityText.text = instantiatedItem.ItemStats[i].Value.ToString();
+                quantityText.text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
+            }
+            else if (instantiatedItem.ItemStats[i].Type == ItemStatTypes.Quality)
+            {
+                qualityText.text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
             }
             else
             {
-                propertyTexts[i].text = FormatBasedOnStatType(instantiatedItem.ItemStats[i]);
+                propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(instantiatedItem.ItemStats[i]);
+                propertyTextIndex++;
             }
         }
-    }
-
-    string FormatBasedOnStatType(InventoryItemStat stat)
-    {
-        return "";
     }
 
     void Awake()

@@ -25,10 +25,25 @@ public class InventoryTester : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(updateUIValuesFromItemKey))
+        if (Input.GetKeyDown(createDesiredItemKey))
         {
-            InventoryItem itemBasedOnDesiredType = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
-            reader.UpdateTextBasedOnItem(itemBasedOnDesiredType);
+            lastInstantiatedItem = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
+        }
+        else if (Input.GetKeyDown(addItemToInventoryKey))
+        {
+            inventory.AddItem(lastInstantiatedItem);
+        }
+        else if (Input.GetKeyDown(removeItemFromInventoryKey))
+        {
+            inventory.RemoveItemByType(lastInstantiatedItem.ItemType);
+        }
+        else if (Input.GetKeyDown(removeUniqueItemFromInventoryKey))
+        {
+            inventory.RemoveItemByID(lastInstantiatedItem.ItemID);
+        }
+        else if (Input.GetKeyDown(updateUIValuesFromItemKey))
+        {
+            reader.UpdateTextBasedOnItem(lastInstantiatedItem);
         }
     }
 }

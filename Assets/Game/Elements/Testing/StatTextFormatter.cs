@@ -11,11 +11,13 @@ public static class StatTextFormatter
             case ItemStatTypes.Quality:
                 // Get the quality enum based on the stat's quality int value
                 ItemQualityIDs quality = (ItemQualityIDs)statType.Value;
+
+                // Set the item's quality text color based on its quality
                 if (quality == ItemQualityIDs.Mundane)
-                    return $"<color=white>{quality.ToString()}</color>";
+                    return $"<color=white>{quality}</color>";
                 else if (quality == ItemQualityIDs.Enchanted)
-                    return $"<color=aqua>{quality.ToString()}</color>";
-                else return $"<color=gold>{quality.ToString()}</color>";
+                    return $"<color=aqua>{quality}</color>";
+                else return $"<color=purple>{quality}</color>";
 
             case ItemStatTypes.Quantity:
                 return $"{statType.Value}";

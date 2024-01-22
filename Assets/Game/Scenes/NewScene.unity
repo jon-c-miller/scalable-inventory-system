@@ -663,7 +663,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reader: {fileID: 2119568589}
   inventory:
-    currentInventory: []
+    currentInventory:
+    - itemType: 0
+      itemID: 0
+      itemQuality: 0
+      itemLevel: 0
+      itemStats: []
+      itemQuantity: 0
+      isStackable: 0
     itemAmountLimit: 12
     itemStackMax: 5
     enableMultipleStacks: 0

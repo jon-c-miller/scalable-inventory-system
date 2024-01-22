@@ -19,9 +19,6 @@ public static class StatTextFormatter
                     return $"<color=aqua>{quality}</color>";
                 else return $"<color=purple>{quality}</color>";
 
-            case ItemStatTypes.Quantity:
-                return $"{statType.Value}";
-
             case ItemStatTypes.EffectRange:
                 return $"Range: {statType.Value}";
 

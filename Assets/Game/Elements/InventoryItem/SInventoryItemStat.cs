@@ -17,7 +17,6 @@ public enum ItemStatTypes
     // Common modifiers
     Size,
     Quality,
-    Quantity,
     EffectRange,
 
     // Persistent increases while under effect of item (equipped, near, etc.)

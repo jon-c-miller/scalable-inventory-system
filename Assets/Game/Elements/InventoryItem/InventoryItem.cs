@@ -11,19 +11,25 @@ public struct InventoryItem
     [SerializeField] ItemQualityIDs itemQuality;    // Determines stat count
     [SerializeField, Range(1, 20)] int itemLevel;   // Determines stats' values based on their range constraints
     [SerializeField] InventoryItemStat[] itemStats;
+    [SerializeField] int itemQuantity;
+    [SerializeField] bool isStackable;
 
     public readonly ItemTypes ItemType => itemType;
     public readonly int ItemLevel => itemLevel;
     public readonly int ItemID => itemID;
     public readonly ItemQualityIDs ItemQuality => itemQuality;
     public readonly InventoryItemStat[] ItemStats => itemStats;
+    public int ItemQuantity { readonly get => itemQuantity; set => itemQuantity = value; }
+    public readonly bool IsStackable => isStackable;
 
-    public InventoryItem(ItemTypes type, ItemQualityIDs quality, int level, List<InventoryItemStat> stats)
+    public InventoryItem(ItemTypes type, ItemQualityIDs quality, int level, InventoryItemStat[] stats, bool stackable, int quantity)
     {
         itemType = type;
-        itemID = Random.Range(10000000, 100000000);
+        itemID = stackable ? 99 : Random.Range(10000000, 100000000);
         itemQuality = quality;
         itemLevel = level;
-        itemStats = stats.ToArray();
+        itemStats = stats;
+        isStackable = stackable;
+        itemQuantity = quantity;
     }
 }

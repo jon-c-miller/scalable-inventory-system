@@ -8,6 +8,9 @@ public class SInventoryItem : ScriptableObject
     public string Description;
     public ItemTypes Type;
     public List<SInventoryItemStat> PossibleStats = new();
+    [Space]
+    public bool IsStackable;
+    public int MaxDropAmount;
 }
 
 public enum ItemTypes

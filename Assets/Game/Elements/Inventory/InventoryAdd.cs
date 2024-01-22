@@ -28,7 +28,7 @@ public static class InventoryAdd
                             // Skip entries with a max stack
                             if (currentInventory[i].ItemQuantity == itemStackMax) continue;
 
-                            // Max the current stack
+                            // Max the current stack and update the entry
                             UnityEngine.Debug.LogWarning($"Max the current stack and add a new stack to the first empty spot if available...");
                             InventoryItem inventoryUpdate = currentInventory[i].CopyItem(itemStackMax);
                             currentInventory[i] = inventoryUpdate;

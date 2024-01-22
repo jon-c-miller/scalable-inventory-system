@@ -22,6 +22,14 @@ public struct InventoryItem
     public int ItemQuantity { readonly get => itemQuantity; set => itemQuantity = value; }
     public readonly bool IsStackable => isStackable;
 
+    public readonly InventoryItem CopyItem(int newQuantity)
+    {
+        // Copy the current stats array to the new copy
+        InventoryItemStat[] copyOfStats = new InventoryItemStat[itemStats.Length];
+        itemStats.CopyTo(copyOfStats, 0); 
+        return new(itemType, itemQuality, itemLevel, copyOfStats, isStackable, newQuantity);
+    }
+
     public InventoryItem(ItemTypes type, ItemQualityIDs quality, int level, InventoryItemStat[] stats, bool stackable, int quantity)
     {
         itemType = type;

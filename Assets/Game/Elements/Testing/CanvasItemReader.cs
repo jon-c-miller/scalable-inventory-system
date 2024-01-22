@@ -12,8 +12,8 @@ public class CanvasItemReader : MonoBehaviour
     public void UpdateTextBasedOnItem(InventoryItem item)
     {
         // Use the item's type to retrieve name and description from the item database
-        nameText.text = InventoryItemDatabase.ItemDatabase[item.ItemType].Name;
-        descriptionText.text = InventoryItemDatabase.ItemDatabase[item.ItemType].Description;
+        nameText.text = InventoryDatabase.ItemDatabase[item.ItemType].Name;
+        descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemType].Description;
 
         // Keep track of the property text index to allow flexibility based on property type
         int propertyTextIndex = 0;

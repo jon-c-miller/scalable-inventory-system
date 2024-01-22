@@ -14,7 +14,7 @@ public static class InventoryRemove
             if (currentInventory[i].ItemType == itemTypeToRemove)
             {
                 // Handle cases where the item to be removed is stackable
-                if (InventoryItemDatabase.ItemDatabase[itemTypeToRemove].IsStackable)
+                if (InventoryDatabase.ItemDatabase[itemTypeToRemove].IsStackable)
                 {
                     int currentQuantity = currentInventory[i].ItemQuantity;
 

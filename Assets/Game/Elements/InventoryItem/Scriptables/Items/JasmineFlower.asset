@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: A lovely and fragrant jasmine flower in its prime.
   Type: 1
   PossibleStats:
-  - {fileID: 11400000, guid: 49960d620195ceb42bc15a9ddfe2d5a5, type: 2}
   - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
+  IsStackable: 1
+  MaxDropAmount: 3

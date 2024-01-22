@@ -608,7 +608,6 @@ GameObject:
   m_Component:
   - component: {fileID: 643846995}
   - component: {fileID: 643846994}
-  - component: {fileID: 643846993}
   - component: {fileID: 643846996}
   m_Layer: 0
   m_Name: InventoryTester
@@ -617,21 +616,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &643846993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643846992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd821e1d6ef97640913d5c13c11aad5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemStatTemplates:
-  - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  - {fileID: 11400000, guid: 49960d620195ceb42bc15a9ddfe2d5a5, type: 2}
 --- !u!114 &643846994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +630,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemTemplates:
   - {fileID: 11400000, guid: 7ec81e5058f22e649a4c5a82a675f843, type: 2}
+  - {fileID: 11400000, guid: 3627087ad126878418eefac48c602863, type: 2}
+  statTemplates:
+  - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
+  - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
 --- !u!4 &643846995
 Transform:
   m_ObjectHideFlags: 0
@@ -693,6 +681,8 @@ MonoBehaviour:
     itemQuality: 0
     itemLevel: 0
     itemStats: []
+    itemQuantity: 0
+    isStackable: 0
   itemIDToRemove: 0
 --- !u!1 &703004227
 GameObject:

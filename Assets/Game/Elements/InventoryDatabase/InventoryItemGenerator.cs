@@ -6,7 +6,7 @@ public static class InventoryItemGenerator
 {
     public static InventoryItem CreateInventoryItem(ItemTypes type, ItemQualityIDs quality, int level)
     {
-        SInventoryItem itemTemplate = InventoryItemDatabase.ItemDatabase[type];
+        SInventoryItem itemTemplate = InventoryDatabase.ItemDatabase[type];
 
         // Set stat count based on desired quality by using the enum entry as the amount of stats
         int numberOfStats = (int)quality;

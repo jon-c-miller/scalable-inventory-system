@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2314fba57a166a4e8984026bf79211a, type: 3}
+  m_Name: SavoryPastry
+  m_EditorClassIdentifier: 
+  Name: Savory Pastry
+  Description: A perfectly baked pastry tantalizing to look upon, promising the utmost
+    in culinary delight.
+  Type: 3
+  PossibleStats:
+  - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
+  - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
+  IsStackable: 1
+  MaxDropAmount: 2

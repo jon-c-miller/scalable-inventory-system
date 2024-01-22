@@ -20,19 +20,19 @@ public static class StatTextFormatter
                 else return $"<color=purple>{quality}</color>";
 
             case ItemStatTypes.EffectRange:
-                return $"Range: {statType.Value}";
+                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} {statType.Value}";
 
             case ItemStatTypes.ManaIncrease:
-                return $"<color=blue>+ {statType.Value}</color> Mana";
+                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=blue>+{statType.Value}</color>";
 
             case ItemStatTypes.DamageIncrease:
-                return $"<color=red>+ {statType.Value}</color> Damage";
+                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=red>+{statType.Value}</color>";
 
             case ItemStatTypes.ComfortIncrease:
-                return $"<color=teal>+ {statType.Value}</color> Comfort";
+                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=teal>+{statType.Value}</color>";
 
             case ItemStatTypes.HealingAmount:
-                return $"<color=green>{statType.Value}</color> Health Recovered";
+                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=green>+{statType.Value}</color>";
         }
         return "";
     }

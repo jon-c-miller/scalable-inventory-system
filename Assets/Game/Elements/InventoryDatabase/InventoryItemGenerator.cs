@@ -15,6 +15,9 @@ public static class InventoryItemGenerator
         if (level < 1)
             level = 1;
 
+        // Generate a quantity (always results in 1 unless item is intended to drop as a stack)
+        int quantityToGenerate = itemTemplate.IsStackable ? Random.Range(1, itemTemplate.MaxDropAmount + 1) : 1;
+
         // Generate stat types
         List<InventoryItemStat> generatedStats = new();
         for (int i = 0; i < numberOfStats; i++)
@@ -38,6 +41,6 @@ public static class InventoryItemGenerator
         // Always add quality
         generatedStats.Add(new InventoryItemStat(ItemStatTypes.Quality, (int)quality));
 
-        return new InventoryItem(itemTemplate.Type, quality, level, generatedStats);
+        return new InventoryItem(itemTemplate.Type, quality, level, generatedStats.ToArray(), itemTemplate.IsStackable, quantityToGenerate);
     }
 }

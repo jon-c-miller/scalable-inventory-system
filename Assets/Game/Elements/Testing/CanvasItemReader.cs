@@ -18,14 +18,13 @@ public class CanvasItemReader : MonoBehaviour
         // Keep track of the property text index to allow flexibility based on property type
         int propertyTextIndex = 0;
 
+        // Display item quantity if over 1
+        quantityText.text = item.ItemQuantity > 1 ? item.ItemQuantity.ToString() : "";
+
         for (int i = 0; i < item.ItemStats.Length; i++)
         {
-            // Handle quality and quantity stat differently
-            if (item.ItemStats[i].Type == ItemStatTypes.Quantity)
-            {
-                quantityText.text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
-            }
-            else if (item.ItemStats[i].Type == ItemStatTypes.Quality)
+            // Handle quality stat differently
+            if (item.ItemStats[i].Type == ItemStatTypes.Quality)
             {
                 qualityText.text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
             }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Represents an item instance; stores identifying info as well as randomly generate properties. </summary>

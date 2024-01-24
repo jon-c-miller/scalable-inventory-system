@@ -17,5 +17,5 @@ MonoBehaviour:
   Type: 1
   PossibleStats:
   - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  IsStackable: 1
+  IsStackable: 0
   MaxDropAmount: 3

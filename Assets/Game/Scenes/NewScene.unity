@@ -679,6 +679,7 @@ MonoBehaviour:
   addItemToInventoryKey: 49
   removeItemFromInventoryKey: 50
   removeUniqueItemFromInventoryKey: 51
+  compactInventoryKey: 52
   desiredItemType: 3
   desiredItemQuality: 2
   desiredItemLevel: 1

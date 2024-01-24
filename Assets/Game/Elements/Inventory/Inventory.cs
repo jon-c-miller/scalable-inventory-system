@@ -30,6 +30,6 @@ public class Inventory
 
     public void CompactItems()
     {
-
+        InventoryCompact.CompactItems(currentInventory, out currentInventory);
     }
 }

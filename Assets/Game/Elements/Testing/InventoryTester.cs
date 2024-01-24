@@ -14,6 +14,7 @@ public class InventoryTester : MonoBehaviour
     [SerializeField] KeyCode addItemToInventoryKey = KeyCode.Alpha1;
     [SerializeField] KeyCode removeItemFromInventoryKey = KeyCode.Alpha2;
     [SerializeField] KeyCode removeUniqueItemFromInventoryKey = KeyCode.Alpha3;
+    [SerializeField] KeyCode compactInventoryKey = KeyCode.Alpha4;
 
     [Header("Test Parameters")]
     [SerializeField] ItemTypes desiredItemType;
@@ -40,6 +41,10 @@ public class InventoryTester : MonoBehaviour
         else if (Input.GetKeyDown(removeUniqueItemFromInventoryKey))
         {
             inventory.RemoveItemByID(lastInstantiatedItem.ItemID);
+        }
+        else if (Input.GetKeyDown(compactInventoryKey))
+        {
+            inventory.CompactItems();
         }
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {

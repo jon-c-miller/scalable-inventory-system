@@ -15,12 +15,32 @@ public class GameCoordinator : MonoBehaviour
     public void CompactInventory() => inventoryManager.CompactItems();
 
     public void UpdateItemView(InventoryItem itemToView) => itemReader.UpdateTextBasedOnItem(itemToView);
-            
-    public void NavigateInventoryNext() => inventoryReader.SelectNextEntry();
 
-    public void NavigateInventoryPrevious() => inventoryReader.SelectPreviousEntry();
+    public void SetReaderInventory()
+    {
+        inventoryReader.SetCurrentInventory(inventoryManager.GetInventory());
 
-    public void SetReaderInventory() => inventoryReader.SetCurrentInventory(inventoryManager.GetInventory());
+        // Update the item view based on the inventory view's current selection
+        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
+    }
+
+    public void NavigateInventoryNext()
+    {
+        inventoryReader.SelectNextEntry();
+
+        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
+    }
+
+    public void NavigateInventoryPrevious()
+    {
+        inventoryReader.SelectPreviousEntry();
+
+        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
+    }
+
 
 
 

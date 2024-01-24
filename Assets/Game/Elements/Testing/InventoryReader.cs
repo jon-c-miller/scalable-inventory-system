@@ -85,4 +85,23 @@ public class InventoryReader : MonoBehaviour
             UpdateEntries();
         }
     }
+
+    public void SelectPreviousEntry()
+    {
+        // Decrement the entry selector and update text color if it isn't at the top already
+        if (selectedEntryIndex > 0)
+        {
+            entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
+            selectedEntryIndex--;
+            entries[selectedEntryIndex].UpdateTextColor(selectedColor);
+            Debug.LogWarning($"Updating entry index to {selectedEntryIndex}...");
+        }
+        else if (displayFromInventoryIndex > 0)
+        {
+            // Otherwise increase the display from index if still within the subset of inventory being displayed
+            displayFromInventoryIndex--;
+            Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
+            UpdateEntries();
+        }
+    }
 }

@@ -56,7 +56,7 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(selectPreviousEntryKey))
         {
-            // inventoryReader.SelectPreviousEntry();
+            inventoryReader.SelectPreviousEntry();
         }
         else if (Input.GetKeyDown(selectNextEntryKey))
         {

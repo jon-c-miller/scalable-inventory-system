@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CanvasItemReader : MonoBehaviour
+public class ItemReader : MonoBehaviour
 {
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;

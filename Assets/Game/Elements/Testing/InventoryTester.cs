@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary> Acts as a proxy to modify a unit's inventory at runtime. </summary>
 public class InventoryTester : MonoBehaviour
 {
-    [SerializeField] CanvasItemReader itemReader;
+    [SerializeField] ItemReader itemReader;
     [Space]
     [SerializeField] Inventory inventory = new();
 

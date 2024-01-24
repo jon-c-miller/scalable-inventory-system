@@ -3,11 +3,6 @@ using UnityEngine;
 /// <summary> Acts as a proxy to modify a unit's inventory at runtime. </summary>
 public class InventoryTester : MonoBehaviour
 {
-    [SerializeField] InventoryReader inventoryReader;
-    [SerializeField] ItemReader itemReader;
-    [Space]
-    [SerializeField] Inventory inventory = new();
-
     [Header("Keybindings")]
     [SerializeField] KeyCode createDesiredItemKey = KeyCode.Tab;
     [SerializeField] KeyCode updateUIValuesFromItemKey = KeyCode.Space;
@@ -36,31 +31,31 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {
-            inventory.AddItem(lastInstantiatedItem);
+            GameCoordinator.Instance.AddItemToInventory(lastInstantiatedItem);
         }
         else if (Input.GetKeyDown(removeItemFromInventoryKey))
         {
-            inventory.RemoveItemByType(lastInstantiatedItem.ItemType);
+            GameCoordinator.Instance.RemoveItemFromInventory(lastInstantiatedItem.ItemType);
         }
         else if (Input.GetKeyDown(compactInventoryKey))
         {
-            inventory.CompactItems();
+            GameCoordinator.Instance.CompactInventory();
         }
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {
-            itemReader.UpdateTextBasedOnItem(lastInstantiatedItem);
+            GameCoordinator.Instance.UpdateItemView(lastInstantiatedItem);
         }
         else if (Input.GetKeyDown(setInventoryKey))
         {
-            inventoryReader.SetCurrentInventory(inventory.GetInventory());
+            GameCoordinator.Instance.SetReaderInventory();
         }
         else if (Input.GetKeyDown(selectPreviousEntryKey))
         {
-            inventoryReader.SelectPreviousEntry();
+            GameCoordinator.Instance.NavigateInventoryPrevious();
         }
         else if (Input.GetKeyDown(selectNextEntryKey))
         {
-            inventoryReader.SelectNextEntry();
+            GameCoordinator.Instance.NavigateInventoryNext();
         }
     }
 }

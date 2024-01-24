@@ -21,7 +21,6 @@ public class InventoryTester : MonoBehaviour
     [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
     [Space]
     [SerializeField] InventoryItem lastInstantiatedItem;
-    [SerializeField] int itemIDToRemove;
 
     void Update()
     {

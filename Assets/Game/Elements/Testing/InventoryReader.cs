@@ -12,6 +12,8 @@ public class InventoryReader : MonoBehaviour
     [SerializeField] int displayFromInventoryIndex;
     [SerializeField] int selectedEntryIndex;
 
+    public int SelectedInventoryItemIndex => selectedEntryIndex + displayFromInventoryIndex;
+
     public void SetCurrentInventory(InventoryItem[] inventoryToDisplay)
     {
         inventoryBeingDisplayed = inventoryToDisplay;

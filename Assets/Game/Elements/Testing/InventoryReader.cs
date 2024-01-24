@@ -39,39 +39,43 @@ public class InventoryReader : MonoBehaviour
             return;
         }
 
-        // Populate the entries collection with the current subset of inventory being displayed
-        for (int i = displayFromInventoryIndex; i < concurrentEntriesToDisplay; i++)
+        // Populate canvas entries with current subset of inventory being displayed (based on concurrentEntriesToDisplay)
+        int currentEntryIndex = 0;
+        for (int i = displayFromInventoryIndex; i < concurrentEntriesToDisplay + displayFromInventoryIndex; i++)
         {
-            // Don't try to add an entry outside of the actual inventory size
+            // Don't try to display an entry outside of the actual inventory size
             if (i >= inventoryBeingDisplayed.Length)
             {
                 Debug.LogWarning("Reached end of inventory.");
                 return;
             }
 
-            // Set name of entry based on the type of item at this index
-            Debug.LogWarning($"Updating entry at index {i}...");
+            // Gather data for name of entry based on the type of item at this index, as well as quantity
+            Debug.LogWarning($"Updating entry at index {currentEntryIndex} based on inventory index {i}...");
             string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemType].Name;
-
             int entryQuantity = inventoryBeingDisplayed[i].ItemQuantity;
-            entries[i].SetEntryText(entryName, entryQuantity);
+
+            // Set the canvas entry based on starting from index 0
+            entries[currentEntryIndex].SetEntryText(entryName, entryQuantity);
+            currentEntryIndex++;
         }
     }
 
     public void SelectNextEntry()
     {
         // Increment the entry selector and update text color if it isn't at the bottom already
-        if (selectedEntryIndex < concurrentEntriesToDisplay && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
+        if (selectedEntryIndex < concurrentEntriesToDisplay - 1 && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
         {
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex++;
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
+            Debug.LogWarning($"Updating entry index to {selectedEntryIndex}...");
         }
-
-        // Update the content of the entries if necessary
-        if (selectedEntryIndex > displayFromInventoryIndex + concurrentEntriesToDisplay)
+        else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
+            // Otherwise increase the display from index if still within the subset of inventory being displayed
             displayFromInventoryIndex++;
+            Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
             UpdateEntries();
         }
     }

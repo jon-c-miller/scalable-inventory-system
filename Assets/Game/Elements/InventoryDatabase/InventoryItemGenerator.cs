@@ -38,9 +38,6 @@ public static class InventoryItemGenerator
             generatedStats.Add(new InventoryItemStat(newStat.Type, valueAfterPerLevelIncrease));
         }
 
-        // Always add quality
-        generatedStats.Add(new InventoryItemStat(ItemStatTypes.Quality, (int)quality));
-
         return new InventoryItem(type, quality, level, generatedStats.ToArray(), itemTemplate.IsStackable, quantityToGenerate);
     }
 }

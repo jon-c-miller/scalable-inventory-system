@@ -21,18 +21,12 @@ public class ItemReader : MonoBehaviour
         // Display item quantity if over 1
         quantityText.text = item.ItemQuantity > 1 ? item.ItemQuantity.ToString() : "";
 
+        qualityText.text = StatTextFormatter.FormatQualityText(item.ItemQuality);
+
         for (int i = 0; i < item.ItemStats.Length; i++)
         {
-            // Handle quality stat differently
-            if (item.ItemStats[i].Type == ItemStatTypes.Quality)
-            {
-                qualityText.text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
-            }
-            else
-            {
-                propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
-                propertyTextIndex++;
-            }
+            propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
+            propertyTextIndex++;
         }
     }
 

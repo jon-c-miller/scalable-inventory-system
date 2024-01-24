@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary> Acts as a proxy to modify a unit's inventory at runtime. </summary>
 public class InventoryTester : MonoBehaviour
 {
-    [SerializeField] CanvasItemReader reader;
+    [SerializeField] CanvasItemReader itemReader;
     [Space]
     [SerializeField] Inventory inventory = new();
 
@@ -43,7 +43,7 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {
-            reader.UpdateTextBasedOnItem(lastInstantiatedItem);
+            itemReader.UpdateTextBasedOnItem(lastInstantiatedItem);
         }
     }
 }

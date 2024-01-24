@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary> Provides an API to update a unit's inventory at runtime. </summary>
 [System.Serializable]
-public class Inventory
+public class InventoryManager
 {
     [SerializeField] List<InventoryItem> currentInventory = new() { new InventoryItem() };
     [Space]

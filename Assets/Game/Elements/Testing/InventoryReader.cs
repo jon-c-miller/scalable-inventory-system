@@ -79,7 +79,7 @@ public class InventoryReader : MonoBehaviour
         }
         else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
-            // Otherwise increase the display from index if still within the subset of inventory being displayed
+            // Otherwise increase the display from index if the lowest viewable inventory entry is less than inventory count
             displayFromInventoryIndex++;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
             UpdateEntries();
@@ -98,7 +98,7 @@ public class InventoryReader : MonoBehaviour
         }
         else if (displayFromInventoryIndex > 0)
         {
-            // Otherwise increase the display from index if still within the subset of inventory being displayed
+            // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
             displayFromInventoryIndex--;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
             UpdateEntries();

@@ -23,11 +23,6 @@ public class Inventory
         InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
     }
 
-    public void RemoveItemByID(int itemID)
-    {
-
-    }
-
     public void CompactItems()
     {
         InventoryCompact.CompactItems(currentInventory, out currentInventory);

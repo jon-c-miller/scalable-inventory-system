@@ -53,7 +53,13 @@ public class InventoryReader : MonoBehaviour
             // Gather data for name of entry based on the type of item at this index, as well as quantity
             Debug.LogWarning($"Updating entry at index {currentEntryIndex} based on inventory index {i}...");
             string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemType].Name;
-            int entryQuantity = inventoryBeingDisplayed[i].ItemQuantity;
+            
+            // Only show quantity if the item is stackable
+            string entryQuantity = "";
+            if (inventoryBeingDisplayed[i].IsStackable)
+            {
+                entryQuantity = inventoryBeingDisplayed[i].ItemQuantity.ToString();
+            }
 
             // Set the canvas entry based on starting from index 0
             entries[currentEntryIndex].SetEntryText(entryName, entryQuantity);

@@ -7,10 +7,10 @@ public class ItemEntryDisplay : MonoBehaviour
 
     public void UpdateTextColor(Color newColor) => nameText.color = newColor;
 
-    public void SetEntryText(string itemName, int itemQuantity)
+    public void SetEntryText(string itemName, string itemQuantity)
     {
         nameText.text = itemName;
-        quantityText.text = itemQuantity.ToString();
+        quantityText.text = itemQuantity;
     }
 
     public void ClearEntryText()

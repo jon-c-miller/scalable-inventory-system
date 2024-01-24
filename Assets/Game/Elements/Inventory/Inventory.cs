@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Inventory
 {
-    [SerializeField] List<InventoryItem> currentInventory = new() { new InventoryItem()};
+    [SerializeField] List<InventoryItem> currentInventory = new() { new InventoryItem() };
     [Space]
     [SerializeField] int itemAmountLimit = 12;
     [SerializeField] int itemStackMax = 5;

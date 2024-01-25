@@ -34,7 +34,7 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(removeItemFromInventoryKey))
         {
-            GameCoordinator.Instance.RemoveItemFromInventory(lastInstantiatedItem.ItemType);
+            GameCoordinator.Instance.RemoveItemFromInventory(desiredItemType);
         }
         else if (Input.GetKeyDown(compactInventoryKey))
         {

@@ -36,18 +36,24 @@ public class InventoryManager
     public void AddItem(InventoryItem itemToAdd, IInventoryView view)
     {
         InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks);
-        view.ISetCurrentInventory(GetInventory());
+        view.ISetCurrentInventory(GetInventory(), false);
+    }
+
+    public void RemoveItemAtIndex(int index, IInventoryView view)
+    {
+        InventoryRemove.RemoveAtIndex(currentInventory, index);
+        view.ISetCurrentInventory(GetInventory(), false);
     }
 
     public void RemoveItemByType(ItemTypes itemTypeToRemove, IInventoryView view)
     {
         InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
-        view.ISetCurrentInventory(GetInventory());
+        view.ISetCurrentInventory(GetInventory(), false);
     }
 
     public void CompactItems(IInventoryView view)
     {
         InventoryCompact.CompactItems(currentInventory, out currentInventory);
-        view.ISetCurrentInventory(GetInventory());
+        view.ISetCurrentInventory(GetInventory(), true);
     }
 }

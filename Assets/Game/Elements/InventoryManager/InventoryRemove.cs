@@ -2,6 +2,35 @@ using System.Collections.Generic;
 
 public static class InventoryRemove
 {
+    public static void RemoveAtIndex(List<InventoryItem> currentInventory, int index)
+    {
+        if (currentInventory.Count < index) return;
+
+        // Handle cases where the item to be removed is stackable
+        if (currentInventory[index].IsStackable)
+        {
+            int currentQuantity = currentInventory[index].ItemQuantity;
+
+            // Remove entry if there is only 1 quantity left
+            if (currentQuantity == 1)
+            {
+                UnityEngine.Debug.LogWarning($"Eliminate the entry due to remaining quantity of 1...");
+                currentInventory[index] = new();
+                return;
+            }
+
+            // Reduce the current stack and update the entry
+            UnityEngine.Debug.LogWarning($"Reduce the current stack and update the entry...");
+            InventoryItem inventoryUpdate = currentInventory[index].CopyItem(currentQuantity - 1);
+            currentInventory[index] = inventoryUpdate;
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning($"Eliminate the entry...");
+            currentInventory[index] = new();
+        }
+    }
+
     public static void RemoveItemByType(List<InventoryItem> currentInventory, ItemTypes itemTypeToRemove)
     {
         // Loop backwards to remove the entry farthest from the start (helps support a compact inventory)

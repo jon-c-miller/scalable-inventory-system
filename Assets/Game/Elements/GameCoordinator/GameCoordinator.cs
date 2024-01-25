@@ -4,8 +4,8 @@ using UnityEngine;
 public class GameCoordinator : MonoBehaviour
 {
     [SerializeField] InventoryManager inventoryManager = new();
-    [SerializeField] InventoryReader inventoryReader;
-    [SerializeField] ItemReader itemReader;
+    [SerializeField] InventoryViewer inventoryViewer = new();
+    [SerializeField] ItemViewer itemViewer = new();
 
     // Inventory API
     public void AddItemToInventory(InventoryItem itemToAdd) => inventoryManager.AddItem(itemToAdd);
@@ -14,30 +14,30 @@ public class GameCoordinator : MonoBehaviour
 
     public void CompactInventory() => inventoryManager.CompactItems();
 
-    public void UpdateItemView(InventoryItem itemToView) => itemReader.UpdateTextBasedOnItem(itemToView);
+    public void UpdateItemView(InventoryItem itemToView) => itemViewer.UpdateTextBasedOnItem(itemToView);
 
     public void SetReaderInventory()
     {
-        inventoryReader.SetCurrentInventory(inventoryManager.GetInventory());
+        inventoryViewer.SetCurrentInventory(inventoryManager.GetInventory());
 
         // Update the item view based on the inventory view's current selection
-        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        int currentlySelectedIndex = inventoryViewer.SelectedInventoryItemIndex;
         UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
     }
 
     public void NavigateInventoryNext()
     {
-        inventoryReader.SelectNextEntry();
+        inventoryViewer.SelectNextEntry();
 
-        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        int currentlySelectedIndex = inventoryViewer.SelectedInventoryItemIndex;
         UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
     }
 
     public void NavigateInventoryPrevious()
     {
-        inventoryReader.SelectPreviousEntry();
+        inventoryViewer.SelectPreviousEntry();
 
-        int currentlySelectedIndex = inventoryReader.SelectedInventoryItemIndex;
+        int currentlySelectedIndex = inventoryViewer.SelectedInventoryItemIndex;
         UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
     }
 
@@ -59,5 +59,7 @@ public class GameCoordinator : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        itemViewer.InitializeView();
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class ItemReader : MonoBehaviour
+[System.Serializable]
+public class ItemViewer
 {
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
@@ -47,11 +48,5 @@ public class ItemReader : MonoBehaviour
         {
             propertyTexts[i].text = "";
         }
-    }
-
-    void Awake()
-    {
-        // Initialize text for properties
-        InitializeView();
     }
 }

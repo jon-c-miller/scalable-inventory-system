@@ -18,9 +18,8 @@ public partial class InventoryViewer : IInventoryView
 
     public int ISelectedInventoryItemIndex => selectedEntryIndex + displayFromInventoryIndex;
 
-    public void ISetCurrentInventory(InventoryItem[] inventoryToDisplay)
+    public void IInitializeView()
     {
-        inventoryBeingDisplayed = inventoryToDisplay;
         displayFromInventoryIndex = 0;
         selectedEntryIndex = 0;
 
@@ -33,7 +32,18 @@ public partial class InventoryViewer : IInventoryView
                 entries[i].UpdateTextColor(unselectedColor);
             }
         }
-        entries[0].UpdateTextColor(selectedColor);
+    }
+
+    public void ISetCurrentInventory(InventoryItem[] inventoryToDisplay, bool initializeView)
+    {
+        inventoryBeingDisplayed = inventoryToDisplay;
+
+        if (initializeView)
+        {
+            IInitializeView();
+            entries[0].UpdateTextColor(selectedColor);
+        }
+
         IUpdateEntries();
     }
 

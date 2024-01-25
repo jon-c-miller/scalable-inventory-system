@@ -11,7 +11,6 @@ public class InventoryTester : MonoBehaviour
     [SerializeField] KeyCode removeItemFromInventoryKey = KeyCode.Alpha2;
     [SerializeField] KeyCode compactInventoryKey = KeyCode.Alpha3;
     [Space]
-    [SerializeField] KeyCode setInventoryKey = KeyCode.Alpha4;
     [SerializeField] KeyCode selectPreviousEntryKey = KeyCode.W;
     [SerializeField] KeyCode selectNextEntryKey = KeyCode.S;
 
@@ -43,10 +42,6 @@ public class InventoryTester : MonoBehaviour
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {
             GameCoordinator.Instance.UpdateItemView(lastInstantiatedItem);
-        }
-        else if (Input.GetKeyDown(setInventoryKey))
-        {
-            GameCoordinator.Instance.SetReaderInventory();
         }
         else if (Input.GetKeyDown(selectPreviousEntryKey))
         {

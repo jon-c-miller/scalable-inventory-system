@@ -3,19 +3,20 @@ using UnityEngine;
 /// <summary> Holds navigation logic for the InventoryViewer. </summary>
 public partial class InventoryViewer
 {
-    public void ISelectNextEntry()
+    public void ISelectNextEntry(IItemView itemViewer)
     {
         // Increment the entry selector and update text color if it isn't at the bottom already
         if (selectedEntryIndex < concurrentEntriesToDisplay - 1 && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
         {
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex++;
+            itemViewer.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
 
             // Skip over entries that are empty if desired
             if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    ISelectNextEntry();
+                    ISelectNextEntry(itemViewer);
             }
 
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
@@ -30,19 +31,20 @@ public partial class InventoryViewer
         }
     }
 
-    public void ISelectPreviousEntry()
+    public void ISelectPreviousEntry(IItemView itemViewer)
     {
         // Decrement the entry selector and update text color if it isn't at the top already
         if (selectedEntryIndex > 0)
         {
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex--;
+            itemViewer.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
 
             // Skip over entries that are empty if desired
             if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    ISelectPreviousEntry();
+                    ISelectPreviousEntry(itemViewer);
             }
 
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);

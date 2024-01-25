@@ -8,40 +8,17 @@ public class GameCoordinator : MonoBehaviour
     [SerializeField] ItemViewer itemViewer = new();
 
     // Inventory API
-    public void AddItemToInventory(InventoryItem itemToAdd) => inventoryManager.AddItem(itemToAdd);
+    public void AddItemToInventory(InventoryItem itemToAdd) => inventoryManager.AddItem(itemToAdd, inventoryViewer.Interface);
 
-    public void RemoveItemFromInventory(ItemTypes itemType) => inventoryManager.RemoveItemByType(itemType);
+    public void RemoveItemFromInventory(ItemTypes itemType) => inventoryManager.RemoveItemByType(itemType, inventoryViewer.Interface);
 
-    public void CompactInventory() => inventoryManager.CompactItems();
+    public void CompactInventory() => inventoryManager.CompactItems(inventoryViewer.Interface);
 
-    public void UpdateItemView(InventoryItem itemToView) => itemViewer.UpdateTextBasedOnItem(itemToView);
+    public void UpdateItemView(InventoryItem itemToView) => itemViewer.IUpdateEntryBasedOnItem(itemToView);
 
-    public void SetReaderInventory()
-    {
-        inventoryViewer.ISetCurrentInventory(inventoryManager.GetInventory());
+    public void NavigateInventoryNext() => inventoryViewer.ISelectNextEntry(itemViewer.Interface);
 
-        // Update the item view based on the inventory view's current selection
-        int currentlySelectedIndex = inventoryViewer.ISelectedInventoryItemIndex;
-        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
-    }
-
-    public void NavigateInventoryNext()
-    {
-        inventoryViewer.ISelectNextEntry();
-
-        int currentlySelectedIndex = inventoryViewer.ISelectedInventoryItemIndex;
-        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
-    }
-
-    public void NavigateInventoryPrevious()
-    {
-        inventoryViewer.ISelectPreviousEntry();
-
-        int currentlySelectedIndex = inventoryViewer.ISelectedInventoryItemIndex;
-        UpdateItemView(inventoryManager.GetInventory()[currentlySelectedIndex]);
-    }
-
-
+    public void NavigateInventoryPrevious() => inventoryViewer.ISelectPreviousEntry(itemViewer.Interface);
 
 
 
@@ -60,6 +37,6 @@ public class GameCoordinator : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        itemViewer.InitializeView();
+        itemViewer.IInitializeView();
     }
 }

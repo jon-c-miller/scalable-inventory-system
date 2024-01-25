@@ -31,18 +31,23 @@ public class InventoryManager
         return fullInventory;
     }
 
-    public void AddItem(InventoryItem itemToAdd)
+    public InventoryItem GetItemAtIndex(int index) => currentInventory.Count >= index ? currentInventory[index] : new();
+
+    public void AddItem(InventoryItem itemToAdd, IInventoryView view)
     {
         InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks);
+        view.ISetCurrentInventory(GetInventory());
     }
 
-    public void RemoveItemByType(ItemTypes itemTypeToRemove)
+    public void RemoveItemByType(ItemTypes itemTypeToRemove, IInventoryView view)
     {
         InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
+        view.ISetCurrentInventory(GetInventory());
     }
 
-    public void CompactItems()
+    public void CompactItems(IInventoryView view)
     {
         InventoryCompact.CompactItems(currentInventory, out currentInventory);
+        view.ISetCurrentInventory(GetInventory());
     }
 }

@@ -11,7 +11,25 @@ public class InventoryManager
     [SerializeField] int itemStackMax = 5;
     [SerializeField] bool enableMultipleStacks;
 
-    public InventoryItem[] GetInventory() => currentInventory.ToArray();
+    public InventoryItem[] GetInventoryCompacted() => currentInventory.ToArray();
+
+    public InventoryItem[] GetInventory()
+    {
+        InventoryItem[] fullInventory = new InventoryItem[currentInventory.Count];
+        for (int i = 0; i < currentInventory.Count; i++)
+        {
+            if (currentInventory[i].ItemType == ItemTypes.None)
+            {
+                fullInventory[i] = new();
+            }
+            else
+            {
+                fullInventory[i] = currentInventory[i].CopyItem();
+            }
+        }
+
+        return fullInventory;
+    }
 
     public void AddItem(InventoryItem itemToAdd)
     {

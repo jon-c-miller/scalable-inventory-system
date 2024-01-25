@@ -4,6 +4,7 @@ public class InventoryReader : MonoBehaviour
 {
     [SerializeField] ItemEntryDisplay[] entries;
     [SerializeField] int concurrentEntriesToDisplay = 6;
+    [SerializeField] bool skipEmptyEntries;
     [Space]
     [SerializeField] Color selectedColor;
     [SerializeField] Color unselectedColor;
@@ -52,6 +53,15 @@ public class InventoryReader : MonoBehaviour
                 return;
             }
 
+            // Handle empty entries
+            if (inventoryBeingDisplayed[i].ItemType == ItemTypes.None)
+            {
+                // Clear canvas for the current entry
+                entries[currentEntryIndex].SetEntryText("", "");
+                currentEntryIndex++;
+                continue;
+            }
+
             // Gather data for name of entry based on the type of item at this index, as well as quantity
             Debug.LogWarning($"Updating entry at index {currentEntryIndex} based on inventory index {i}...");
             string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemType].Name;
@@ -76,11 +86,30 @@ public class InventoryReader : MonoBehaviour
         {
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex++;
+
+            // Skip entries that are empty
+            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            {
+                if (skipEmptyEntries)
+                    SelectNextEntry();
+
+                return;
+            }
+
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
             Debug.LogWarning($"Updating entry index to {selectedEntryIndex}...");
         }
         else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
+            // Skip entries that are empty
+            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            {
+                if (skipEmptyEntries)
+                    SelectNextEntry();
+
+                return;
+            }
+
             // Otherwise increase the display from index if the lowest viewable inventory entry is less than inventory count
             displayFromInventoryIndex++;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
@@ -95,11 +124,30 @@ public class InventoryReader : MonoBehaviour
         {
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex--;
+
+            // Skip entries that are empty
+            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            {
+                if (skipEmptyEntries)
+                    SelectPreviousEntry();
+
+                return;
+            }
+
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
             Debug.LogWarning($"Updating entry index to {selectedEntryIndex}...");
         }
         else if (displayFromInventoryIndex > 0)
         {
+            // Skip entries that are empty
+            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            {
+                if (skipEmptyEntries)
+                    SelectPreviousEntry();
+
+                return;
+            }
+
             // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
             displayFromInventoryIndex--;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");

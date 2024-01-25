@@ -123,28 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &311554597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2612151345700888764, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &504062846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 647659692259045188, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &643846992
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,31 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bc35d2e35759a4ba054690f2a25e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewer:
-    entries:
-    - {fileID: 167483685205601507}
-    - {fileID: 1505194662}
-    - {fileID: 1086859666}
-    - {fileID: 504062846}
-    - {fileID: 311554597}
-    - {fileID: 1859056922}
-    concurrentEntriesToDisplay: 6
-    skipEmptyEntries: 0
-    selectedColor: {r: 1, g: 0, b: 1, a: 1}
-    unselectedColor: {r: 1, g: 0.5019608, b: 0, a: 1}
-    inventoryBeingDisplayed: []
-    displayFromInventoryIndex: 0
-    selectedEntryIndex: 0
   createDesiredItemKey: 9
   updateUIValuesFromItemKey: 32
   addItemToInventoryKey: 49
   removeItemFromInventoryKey: 50
-  compactInventoryKey: 51
-  setInventoryKey: 52
+  removeSelectedItemFromInventoryKey: 51
+  compactInventoryKey: 52
   selectPreviousEntryKey: 119
   selectNextEntryKey: 115
   desiredItemType: 1
   desiredItemQuality: 2
+  indexToRemove: 0
   desiredItemLevel: 1
   lastInstantiatedItem:
     itemType: 0
@@ -223,17 +187,6 @@ MonoBehaviour:
     itemStats: []
     itemQuantity: 0
     isStackable: 0
---- !u!114 &1086859666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1903985950207799384, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1210807051
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,17 +279,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1505194662 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2947160192058290024, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1519224533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,28 +348,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
---- !u!114 &1859056922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1416797556940810674, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &167483685205601507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7618841718240038369, guid: e4583f2a5e5c3eb4e8485ec9061d160b, type: 3}
-  m_PrefabInstance: {fileID: 1519224533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93779b813d3593c40a0026ef26a45933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class GameCoordinator : MonoBehaviour
 
     public void RemoveItemFromInventory(ItemTypes itemType) => inventoryManager.RemoveItemByType(itemType, inventoryViewer.Interface);
 
+    public void RemoveSelectedItemFromInventory() => inventoryManager.RemoveItemAtIndex(inventoryViewer.ISelectedInventoryItemIndex, inventoryViewer.Interface);
+
     public void CompactInventory() => inventoryManager.CompactItems(inventoryViewer.Interface);
 
     public void UpdateItemView(InventoryItem itemToView) => itemViewer.IUpdateEntryBasedOnItem(itemToView);
@@ -38,5 +40,6 @@ public class GameCoordinator : MonoBehaviour
         }
 
         itemViewer.IInitializeView();
+        inventoryViewer.IInitializeView();
     }
 }

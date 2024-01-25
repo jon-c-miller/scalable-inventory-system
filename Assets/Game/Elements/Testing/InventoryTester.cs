@@ -9,7 +9,8 @@ public class InventoryTester : MonoBehaviour
     [Space]
     [SerializeField] KeyCode addItemToInventoryKey = KeyCode.Alpha1;
     [SerializeField] KeyCode removeItemFromInventoryKey = KeyCode.Alpha2;
-    [SerializeField] KeyCode compactInventoryKey = KeyCode.Alpha3;
+    [SerializeField] KeyCode removeSelectedItemFromInventoryKey = KeyCode.Alpha3;
+    [SerializeField] KeyCode compactInventoryKey = KeyCode.Alpha4;
     [Space]
     [SerializeField] KeyCode selectPreviousEntryKey = KeyCode.W;
     [SerializeField] KeyCode selectNextEntryKey = KeyCode.S;
@@ -17,6 +18,7 @@ public class InventoryTester : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemTypes desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
+    [SerializeField] int indexToRemove;
     [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
     [Space]
     [SerializeField] InventoryItem lastInstantiatedItem;
@@ -34,6 +36,10 @@ public class InventoryTester : MonoBehaviour
         else if (Input.GetKeyDown(removeItemFromInventoryKey))
         {
             GameCoordinator.Instance.RemoveItemFromInventory(desiredItemType);
+        }
+        else if (Input.GetKeyDown(removeSelectedItemFromInventoryKey))
+        {
+            GameCoordinator.Instance.RemoveSelectedItemFromInventory();
         }
         else if (Input.GetKeyDown(compactInventoryKey))
         {

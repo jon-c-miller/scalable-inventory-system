@@ -11,13 +11,11 @@ public partial class InventoryViewer
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex++;
 
-            // Skip entries that are empty
+            // Skip over entries that are empty if desired
             if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
                     ISelectNextEntry();
-
-                return;
             }
 
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
@@ -25,15 +23,6 @@ public partial class InventoryViewer
         }
         else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
-            // Skip entries that are empty
-            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
-            {
-                if (skipEmptyEntries)
-                    ISelectNextEntry();
-
-                return;
-            }
-
             // Otherwise increase the display from index if the lowest viewable inventory entry is less than inventory count
             displayFromInventoryIndex++;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
@@ -49,13 +38,11 @@ public partial class InventoryViewer
             entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
             selectedEntryIndex--;
 
-            // Skip entries that are empty
+            // Skip over entries that are empty if desired
             if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
                     ISelectPreviousEntry();
-
-                return;
             }
 
             entries[selectedEntryIndex].UpdateTextColor(selectedColor);
@@ -63,15 +50,6 @@ public partial class InventoryViewer
         }
         else if (displayFromInventoryIndex > 0)
         {
-            // Skip entries that are empty
-            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
-            {
-                if (skipEmptyEntries)
-                    ISelectPreviousEntry();
-
-                return;
-            }
-
             // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
             displayFromInventoryIndex--;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");

@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary> Holds navigation logic for the InventoryViewer. </summary>
 public partial class InventoryViewer
 {
-    public void SelectNextEntry()
+    public void ISelectNextEntry()
     {
         // Increment the entry selector and update text color if it isn't at the bottom already
         if (selectedEntryIndex < concurrentEntriesToDisplay - 1 && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
@@ -12,10 +12,10 @@ public partial class InventoryViewer
             selectedEntryIndex++;
 
             // Skip entries that are empty
-            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    SelectNextEntry();
+                    ISelectNextEntry();
 
                 return;
             }
@@ -26,10 +26,10 @@ public partial class InventoryViewer
         else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
             // Skip entries that are empty
-            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    SelectNextEntry();
+                    ISelectNextEntry();
 
                 return;
             }
@@ -37,11 +37,11 @@ public partial class InventoryViewer
             // Otherwise increase the display from index if the lowest viewable inventory entry is less than inventory count
             displayFromInventoryIndex++;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
-            UpdateEntries();
+            IUpdateEntries();
         }
     }
 
-    public void SelectPreviousEntry()
+    public void ISelectPreviousEntry()
     {
         // Decrement the entry selector and update text color if it isn't at the top already
         if (selectedEntryIndex > 0)
@@ -50,10 +50,10 @@ public partial class InventoryViewer
             selectedEntryIndex--;
 
             // Skip entries that are empty
-            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    SelectPreviousEntry();
+                    ISelectPreviousEntry();
 
                 return;
             }
@@ -64,10 +64,10 @@ public partial class InventoryViewer
         else if (displayFromInventoryIndex > 0)
         {
             // Skip entries that are empty
-            if (inventoryBeingDisplayed[SelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            if (inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
             {
                 if (skipEmptyEntries)
-                    SelectPreviousEntry();
+                    ISelectPreviousEntry();
 
                 return;
             }
@@ -75,7 +75,7 @@ public partial class InventoryViewer
             // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
             displayFromInventoryIndex--;
             Debug.LogWarning($"Updating entries starting from index {displayFromInventoryIndex}...");
-            UpdateEntries();
+            IUpdateEntries();
         }
     }
 }

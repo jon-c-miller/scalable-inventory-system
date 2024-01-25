@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public partial class InventoryViewer
+public partial class InventoryViewer : IInventoryView
 {
     [SerializeField] ItemEntryDisplay[] entries;
     [SerializeField] int concurrentEntriesToDisplay = 6;
@@ -14,9 +14,11 @@ public partial class InventoryViewer
     [SerializeField] int displayFromInventoryIndex;
     [SerializeField] int selectedEntryIndex;
 
-    public int SelectedInventoryItemIndex => selectedEntryIndex + displayFromInventoryIndex;
+    public IInventoryView Interface => this;
 
-    public void SetCurrentInventory(InventoryItem[] inventoryToDisplay)
+    public int ISelectedInventoryItemIndex => selectedEntryIndex + displayFromInventoryIndex;
+
+    public void ISetCurrentInventory(InventoryItem[] inventoryToDisplay)
     {
         inventoryBeingDisplayed = inventoryToDisplay;
         displayFromInventoryIndex = 0;
@@ -32,10 +34,10 @@ public partial class InventoryViewer
             }
         }
         entries[0].UpdateTextColor(selectedColor);
-        UpdateEntries();
+        IUpdateEntries();
     }
 
-    public void UpdateEntries()
+    public void IUpdateEntries()
     {
         if (inventoryBeingDisplayed.Length < 1)
         {

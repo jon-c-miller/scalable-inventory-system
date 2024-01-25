@@ -11,6 +11,12 @@ public class ItemReader : MonoBehaviour
 
     public void UpdateTextBasedOnItem(InventoryItem item)
     {
+        if (item.ItemType == ItemTypes.None)
+        {
+            InitializeView();
+            return;
+        }
+
         // Use the item's type to retrieve name and description from the item database
         nameText.text = InventoryDatabase.ItemDatabase[item.ItemType].Name;
         descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemType].Description;
@@ -30,12 +36,22 @@ public class ItemReader : MonoBehaviour
         }
     }
 
-    void Awake()
+    void InitializeView()
     {
-        // Initialize text for properties
+        nameText.text = "";
+        descriptionText.text = "";
+        quantityText.text = "";
+        qualityText.text = "";
+
         for (int i = 0; i < propertyTexts.Length; i++)
         {
             propertyTexts[i].text = "";
         }
+    }
+
+    void Awake()
+    {
+        // Initialize text for properties
+        InitializeView();
     }
 }

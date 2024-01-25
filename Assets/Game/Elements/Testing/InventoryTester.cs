@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/// <summary> Acts as a proxy to modify a unit's inventory at runtime. </summary>
+/// <summary> Acts as a proxy to test the project's API at runtime. </summary>
 public class InventoryTester : MonoBehaviour
 {
     [Header("Keybindings")]
@@ -18,20 +18,19 @@ public class InventoryTester : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemTypes desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
-    [SerializeField] int indexToRemove;
     [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
     [Space]
-    [SerializeField] InventoryItem lastInstantiatedItem;
+    [SerializeField] InventoryItem lastGeneratedItem;
 
     void Update()
     {
         if (Input.GetKeyDown(createDesiredItemKey))
         {
-            lastInstantiatedItem = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
+            lastGeneratedItem = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {
-            GameCoordinator.Instance.AddItemToInventory(lastInstantiatedItem);
+            GameCoordinator.Instance.AddItemToInventory(lastGeneratedItem);
         }
         else if (Input.GetKeyDown(removeItemFromInventoryKey))
         {
@@ -47,7 +46,7 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {
-            GameCoordinator.Instance.UpdateItemView(lastInstantiatedItem);
+            GameCoordinator.Instance.UpdateItemView(lastGeneratedItem);
         }
         else if (Input.GetKeyDown(selectPreviousEntryKey))
         {

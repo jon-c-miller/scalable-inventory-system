@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Provides an API to update a unit's inventory at runtime. </summary>
+/// <summary> Manages an inventory and its view. </summary>
 [System.Serializable]
 public class InventoryManager
 {
+    [SerializeField] GameObject inventoryViewObject;
+    [SerializeField] GameObject itemViewObject;
+    [Space]
     [SerializeField] List<InventoryItem> currentInventory = new() { new InventoryItem() };
     [Space]
     [SerializeField] int itemAmountLimit = 12;
@@ -12,6 +15,18 @@ public class InventoryManager
     [SerializeField] bool enableMultipleStacks;
 
     public InventoryItem[] GetInventoryCompacted() => currentInventory.ToArray();
+    IInventoryView inventoryView;
+    IItemView itemView;
+
+    public void Initialize()
+    {
+        // Get the interface component from inventory and item views (allows for any class to act as a view)
+        inventoryViewObject.TryGetComponent(out inventoryView);
+        itemViewObject.TryGetComponent(out itemView);
+        
+        inventoryView?.IInitialize();
+        itemView?.IInitialize();
+    }
 
     public InventoryItem[] GetInventory()
     {
@@ -33,27 +48,34 @@ public class InventoryManager
 
     public InventoryItem GetItemAtIndex(int index) => currentInventory.Count >= index ? currentInventory[index] : new();
 
-    public void AddItem(InventoryItem itemToAdd, IInventoryView view)
+    public void AddItem(InventoryItem itemToAdd)
     {
         InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks);
-        view.ISetCurrentInventory(GetInventory(), false);
+        inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
-    public void RemoveItemAtIndex(int index, IInventoryView view)
+    public void RemoveItemAtIndex()
     {
+        int index = inventoryView.ISelectedInventoryItemIndex;
         InventoryRemove.RemoveAtIndex(currentInventory, index);
-        view.ISetCurrentInventory(GetInventory(), false);
+        inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
-    public void RemoveItemByType(ItemTypes itemTypeToRemove, IInventoryView view)
+    public void RemoveItemByType(ItemTypes itemTypeToRemove)
     {
         InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
-        view.ISetCurrentInventory(GetInventory(), false);
+        inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
-    public void CompactItems(IInventoryView view)
+    public void CompactItems()
     {
         InventoryCompact.CompactItems(currentInventory, out currentInventory);
-        view.ISetCurrentInventory(GetInventory(), true);
+        inventoryView.ISetCurrentInventory(GetInventory(), true);
     }
+
+    public void NavNext() => inventoryView.ISelectNextEntry(itemView.Interface);
+
+    public void NavPrevious() => inventoryView.ISelectPreviousEntry(itemView.Interface);
+
+    public void UpdateView(InventoryItem itemToView) => itemView.IUpdateEntryBasedOnItem(itemToView);
 }

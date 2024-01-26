@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ItemViewer : IItemView
+public class ItemViewer : MonoBehaviour, IItemView
 {
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
@@ -16,7 +16,7 @@ public class ItemViewer : IItemView
     {
         if (item.ItemType == ItemTypes.None)
         {
-            IInitializeView();
+            IInitialize();
             return;
         }
 
@@ -39,7 +39,7 @@ public class ItemViewer : IItemView
         }
     }
 
-    public void IInitializeView()
+    public void IInitialize()
     {
         nameText.text = "";
         descriptionText.text = "";

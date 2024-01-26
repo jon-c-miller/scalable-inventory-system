@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary> Acts as a proxy to test the project's API at runtime. </summary>
-public class InventoryTester : MonoBehaviour
+public class InventoryTesterAlternate : MonoBehaviour
 {
     [Header("Keybindings")]
     [SerializeField] KeyCode createDesiredItemKey = KeyCode.Tab;
@@ -30,31 +30,31 @@ public class InventoryTester : MonoBehaviour
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {
-            GameCoordinator.Instance.AddItemToInventory(lastGeneratedItem);
+            Game.Instance.InventoryAddItem(lastGeneratedItem);
         }
         else if (Input.GetKeyDown(removeItemFromInventoryKey))
         {
-            GameCoordinator.Instance.RemoveItemFromInventory(desiredItemType);
+            Game.Instance.InventoryRemoveItemByType(desiredItemType);
         }
         else if (Input.GetKeyDown(removeSelectedItemFromInventoryKey))
         {
-            GameCoordinator.Instance.RemoveSelectedItemFromInventory();
+            Game.Instance.InventoryRemoveSelectedItem();
         }
         else if (Input.GetKeyDown(compactInventoryKey))
         {
-            GameCoordinator.Instance.CompactInventory();
+            Game.Instance.InventoryCompact();
         }
         else if (Input.GetKeyDown(updateUIValuesFromItemKey))
         {
-            GameCoordinator.Instance.UpdateItemView(lastGeneratedItem);
+            Game.Instance.InventoryUpdateItemView(lastGeneratedItem);
         }
         else if (Input.GetKeyDown(selectPreviousEntryKey))
         {
-            GameCoordinator.Instance.NavigateInventoryPrevious();
+            Game.Instance.InventoryNavigatePrevious();
         }
         else if (Input.GetKeyDown(selectNextEntryKey))
         {
-            GameCoordinator.Instance.NavigateInventoryNext();
+            Game.Instance.InventoryNavigateNext();
         }
     }
 }

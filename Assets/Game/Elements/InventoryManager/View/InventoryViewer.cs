@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public partial class InventoryViewer : IInventoryView
+public class InventoryViewer : MonoBehaviour, IInventoryView
 {
     [SerializeField] ItemEntryDisplay[] entries;
     [SerializeField] int concurrentEntriesToDisplay = 6;
@@ -18,7 +18,7 @@ public partial class InventoryViewer : IInventoryView
 
     public int ISelectedInventoryItemIndex => selectedEntryIndex + displayFromInventoryIndex;
 
-    public void IInitializeView()
+    public void IInitialize()
     {
         displayFromInventoryIndex = 0;
         selectedEntryIndex = 0;
@@ -34,13 +34,43 @@ public partial class InventoryViewer : IInventoryView
         }
     }
 
+    public void ISelectNextEntry(IItemView itemView)
+    {
+        // Navigate to next if not at the bottom already and there are enough item entries to do so
+        if (selectedEntryIndex < concurrentEntriesToDisplay - 1 && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
+        {
+            Navigate(itemView, false);
+        }
+        else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
+        {
+            // Otherwise increase the display from index if the lowest viewable inventory entry is less than inventory count
+            displayFromInventoryIndex++;
+            IUpdateEntries();
+        }
+    }
+
+    public void ISelectPreviousEntry(IItemView itemView)
+    {
+        // Navigate to previous if not at the top already
+        if (selectedEntryIndex > 0)
+        {
+            Navigate(itemView, true);
+        }
+        else if (displayFromInventoryIndex > 0)
+        {
+            // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
+            displayFromInventoryIndex--;
+            IUpdateEntries();
+        }
+    }
+
     public void ISetCurrentInventory(InventoryItem[] inventoryToDisplay, bool initializeView)
     {
         inventoryBeingDisplayed = inventoryToDisplay;
 
         if (initializeView)
         {
-            IInitializeView();
+            IInitialize();
             entries[0].UpdateTextColor(selectedColor);
         }
 
@@ -90,5 +120,23 @@ public partial class InventoryViewer : IInventoryView
             entries[currentEntryIndex].SetEntryText(entryName, entryQuantity);
             currentEntryIndex++;
         }
+    }
+
+    void Navigate(IItemView itemView, bool isPrevious)
+    {
+        // Update text color of current index, update index based on moving to next or previous, and update view
+        entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
+        selectedEntryIndex += isPrevious ? -1 : 1;
+        itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
+
+        // Skip over entries that are empty if desired
+        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
+        {
+            if (isPrevious)
+                ISelectPreviousEntry(itemView);
+            else ISelectNextEntry(itemView);
+        }
+
+        entries[selectedEntryIndex].UpdateTextColor(selectedColor);
     }
 }

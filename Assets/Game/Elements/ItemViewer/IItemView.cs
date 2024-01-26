@@ -1,6 +1,6 @@
 public interface IItemView
 {
     void IUpdateEntryBasedOnItem(InventoryItem item);
-    void IInitializeView();
+    void IInitialize();
     IItemView Interface { get; }
 }

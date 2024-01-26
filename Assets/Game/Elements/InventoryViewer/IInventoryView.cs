@@ -5,6 +5,6 @@ public interface IInventoryView
     void IUpdateEntries();
     void ISelectNextEntry(IItemView itemView);
     void ISelectPreviousEntry(IItemView itemView);
-    void IInitializeView();
+    void IInitialize();
     IInventoryView Interface { get; }
 }

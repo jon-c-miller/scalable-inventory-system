@@ -14,7 +14,6 @@ public class InventoryManager
     [SerializeField] int itemStackMax = 5;
     [SerializeField] bool enableMultipleStacks;
 
-    public InventoryItem[] GetInventoryCompacted() => currentInventory.ToArray();
     IInventoryView inventoryView;
     IItemView itemView;
 

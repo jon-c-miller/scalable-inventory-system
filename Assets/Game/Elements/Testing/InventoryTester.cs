@@ -62,12 +62,16 @@ public class InventoryTesterAlternate : MonoBehaviour
         {
             for (int i = 0; i < desiredRandomizeAmount; i++)
             {
-                // Get a random item type based on the size of item types, skipping None
+                // Get a random item type based on the amount of item types, skipping None
                 int itemTypesCount = System.Enum.GetValues(typeof(ItemTypes)).Length;
                 ItemTypes randomItemType = (ItemTypes)Random.Range(1, itemTypesCount);
 
+                // Get a random quality type based on the amount of quality types
+                int itemQualityTypesCount = System.Enum.GetValues(typeof(ItemQualityIDs)).Length;
+                ItemQualityIDs randomQuality = (ItemQualityIDs)Random.Range(1, itemQualityTypesCount);
+
                 // Generate a new item and add it to the inventory
-                InventoryItem newItem = InventoryItemGenerator.CreateInventoryItem(randomItemType, desiredItemQuality, desiredItemLevel);
+                InventoryItem newItem = InventoryItemGenerator.CreateInventoryItem(randomItemType, randomQuality, Random.Range(1, 100));
                 Game.Instance.InventoryAddItem(newItem);
             }
         }

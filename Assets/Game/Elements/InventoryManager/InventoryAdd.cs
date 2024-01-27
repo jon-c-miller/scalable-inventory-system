@@ -13,9 +13,9 @@ public static class InventoryAdd
             {
                 InventoryItem currentItem = currentInventory[i];
 
-                // Filter for items of the same type
+                // Filter for items of the same type and quality
                 UnityEngine.Debug.LogWarning($"Filter for items of the same type...");
-                if (currentItem.ItemType == itemToAdd.ItemType)
+                if (currentItem.ItemType == itemToAdd.ItemType && currentItem.ItemQuality == itemToAdd.ItemQuality)
                 {
                     int newQuantity = currentItem.ItemQuantity + itemToAdd.ItemQuantity;
                     InventoryItem inventoryAddition;

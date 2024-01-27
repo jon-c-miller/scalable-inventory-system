@@ -39,7 +39,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         // Navigate to next if not at the bottom already and there are enough item entries to do so
         if (selectedEntryIndex < concurrentEntriesToDisplay - 1 && selectedEntryIndex < inventoryBeingDisplayed.Length - 1)
         {
-            Navigate(itemView, false);
+            Navigate(false);
         }
         else if (displayFromInventoryIndex < inventoryBeingDisplayed.Length - concurrentEntriesToDisplay)
         {
@@ -49,6 +49,9 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         }
         else return;
 
+        // Check for empty entries and nav again if so, and update the item view as long as the nav command is valid
+        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            ISelectNextEntry(itemView);
         itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
 
@@ -57,7 +60,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         // Navigate to previous if not at the top already
         if (selectedEntryIndex > 0)
         {
-            Navigate(itemView, true);
+            Navigate(true);
         }
         else if (displayFromInventoryIndex > 0)
         {
@@ -67,6 +70,8 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         }
         else return;
 
+        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
+            ISelectPreviousEntry(itemView);
         itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
 
@@ -128,20 +133,11 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         }
     }
 
-    void Navigate(IItemView itemView, bool isPrevious)
+    void Navigate(bool isPrevious)
     {
         // Update text color of current index, update index based on moving to next or previous, and update view
         entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
         selectedEntryIndex += isPrevious ? -1 : 1;
-
-        // Skip over entries that are empty if desired
-        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
-        {
-            if (isPrevious)
-                ISelectPreviousEntry(itemView);
-            else ISelectNextEntry(itemView);
-        }
-
         entries[selectedEntryIndex].UpdateTextColor(selectedColor);
     }
 }

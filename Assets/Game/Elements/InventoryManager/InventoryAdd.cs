@@ -11,11 +11,13 @@ public static class InventoryAdd
             UnityEngine.Debug.LogWarning($"Loop through the entire inventory to check for a current stack...");
             for (int i = 0; i < currentInventory.Count; i++)
             {
+                InventoryItem currentItem = currentInventory[i];
+
                 // Filter for items of the same type
                 UnityEngine.Debug.LogWarning($"Filter for items of the same type...");
-                if (currentInventory[i].ItemType == itemToAdd.ItemType)
+                if (currentItem.ItemType == itemToAdd.ItemType)
                 {
-                    int newQuantity = currentInventory[i].ItemQuantity + itemToAdd.ItemQuantity;
+                    int newQuantity = currentItem.ItemQuantity + itemToAdd.ItemQuantity;
                     InventoryItem inventoryAddition;
 
                     // Try handle over max stacks
@@ -26,11 +28,11 @@ public static class InventoryAdd
                         if (enableMultipleStacks)
                         {
                             // Skip entries with a max stack
-                            if (currentInventory[i].ItemQuantity == itemStackMax) continue;
+                            if (currentItem.ItemQuantity == itemStackMax) continue;
 
                             // Max the current stack and update the entry
                             UnityEngine.Debug.LogWarning($"Max the current stack and add a new stack to the first empty spot if available...");
-                            InventoryItem inventoryUpdate = currentInventory[i].CopyItem(itemStackMax);
+                            InventoryItem inventoryUpdate = currentItem.CopyItem(itemStackMax);
                             currentInventory[i] = inventoryUpdate;
 
                             // Add a new stack, first attempting to fill the first empty spot
@@ -42,7 +44,7 @@ public static class InventoryAdd
                         else
                         {
                             // Only take action if the stack isn't at max yet
-                            if (currentInventory[i].ItemQuantity < itemStackMax)
+                            if (currentItem.ItemQuantity < itemStackMax)
                             {
                                 UnityEngine.Debug.LogWarning($"Max the stack, and replace the current entry...");
                                 inventoryAddition = currentInventory[i].CopyItem(itemStackMax);
@@ -59,7 +61,7 @@ public static class InventoryAdd
                     {
                         // Update the stack count as usual for addition amounts that fall within the stack limit
                         UnityEngine.Debug.LogWarning($"Updating quantity to {newQuantity} ({currentInventory[i].ItemQuantity} + {itemToAdd.ItemQuantity})...");
-                        inventoryAddition = currentInventory[i].CopyItem(newQuantity);
+                        inventoryAddition = currentItem.CopyItem(newQuantity);
                         currentInventory[i] = inventoryAddition;
                         return;
                     }

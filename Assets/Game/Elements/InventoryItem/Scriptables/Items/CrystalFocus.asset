@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2314fba57a166a4e8984026bf79211a, type: 3}
-  m_Name: JasmineFlower
+  m_Name: CrystalFocus
   m_EditorClassIdentifier: 
-  Name: Jasmine Flower
-  Description: A lovely and fragrant jasmine flower in its prime.
-  Type: 1
+  Name: Crystal Focus
+  Description: A multifaceted crystal of astounding beauty. Its warmth gives you
+    confidence for the struggles ahead.
+  Type: 2
   PossibleStats:
+  - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
+  - {fileID: 11400000, guid: 79d8e5679d065584aa4ebdf27360af93, type: 2}
   - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  IsStackable: 1
-  MaxDropAmount: 3
+  IsStackable: 0
+  MaxDropAmount: 0

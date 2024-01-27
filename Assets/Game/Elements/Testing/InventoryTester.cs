@@ -11,6 +11,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [SerializeField] KeyCode removeItemFromInventoryKey = KeyCode.Alpha2;
     [SerializeField] KeyCode removeSelectedItemFromInventoryKey = KeyCode.Alpha3;
     [SerializeField] KeyCode compactInventoryKey = KeyCode.Alpha4;
+    [SerializeField] KeyCode randomizeInventoryKey = KeyCode.Alpha5;
     [Space]
     [SerializeField] KeyCode selectPreviousEntryKey = KeyCode.W;
     [SerializeField] KeyCode selectNextEntryKey = KeyCode.S;
@@ -19,6 +20,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [SerializeField] ItemTypes desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
     [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
+    [SerializeField] int desiredRandomizeAmount = 12;
     [Space]
     [SerializeField] InventoryItem lastGeneratedItem;
 
@@ -55,6 +57,19 @@ public class InventoryTesterAlternate : MonoBehaviour
         else if (Input.GetKeyDown(selectNextEntryKey))
         {
             Game.Instance.InventoryNavigateNext();
+        }
+        else if (Input.GetKeyDown(randomizeInventoryKey))
+        {
+            for (int i = 0; i < desiredRandomizeAmount; i++)
+            {
+                // Get a random item type based on the size of item types, skipping None
+                int itemTypesCount = System.Enum.GetValues(typeof(ItemTypes)).Length;
+                ItemTypes randomItemType = (ItemTypes)Random.Range(1, itemTypesCount);
+
+                // Generate a new item and add it to the inventory
+                InventoryItem newItem = InventoryItemGenerator.CreateInventoryItem(randomItemType, desiredItemQuality, desiredItemLevel);
+                Game.Instance.InventoryAddItem(newItem);
+            }
         }
     }
 }

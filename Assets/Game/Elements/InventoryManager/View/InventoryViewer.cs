@@ -47,6 +47,9 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             displayFromInventoryIndex++;
             IUpdateEntries();
         }
+        else return;
+
+        itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
 
     public void ISelectPreviousEntry(IItemView itemView)
@@ -62,6 +65,9 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             displayFromInventoryIndex--;
             IUpdateEntries();
         }
+        else return;
+
+        itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
 
     public void ISetCurrentInventory(InventoryItem[] inventoryToDisplay, bool initializeView)
@@ -127,7 +133,6 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         // Update text color of current index, update index based on moving to next or previous, and update view
         entries[selectedEntryIndex].UpdateTextColor(unselectedColor);
         selectedEntryIndex += isPrevious ? -1 : 1;
-        itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
 
         // Skip over entries that are empty if desired
         if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)

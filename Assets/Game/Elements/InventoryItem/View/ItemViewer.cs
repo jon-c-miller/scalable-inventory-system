@@ -32,9 +32,12 @@ public class ItemViewer : MonoBehaviour, IItemView
 
         qualityText.text = StatTextFormatter.FormatQualityText(item.ItemQuality);
 
-        for (int i = 0; i < item.ItemStats.Length; i++)
+        for (int i = 0; i < propertyTexts.Length; i++)
         {
-            propertyTexts[propertyTextIndex].text = StatTextFormatter.FormatStatText(item.ItemStats[i]);
+            // Flag to clear display for texts above stats count on item
+            bool aboveStatsCount = i >= item.ItemStats.Length;
+
+            propertyTexts[propertyTextIndex].text = aboveStatsCount ? "" : StatTextFormatter.FormatStatText(item.ItemStats[i]);
             propertyTextIndex++;
         }
     }

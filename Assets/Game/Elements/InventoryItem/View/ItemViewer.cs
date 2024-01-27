@@ -31,7 +31,7 @@ public class ItemViewer : MonoBehaviour, IItemView
         // Display item quantity if over 1 and showQuantity is true
         quantityText.text = item.ItemQuantity > 1 && showQuantity ? item.ItemQuantity.ToString() : "";
 
-        qualityText.text = StatTextFormatter.FormatQualityText(item.ItemQuality);
+        qualityText.text = StatTextFormatter.FormatQualityText(item.ItemQuality, item.ItemLevel);
 
         for (int i = 0; i < propertyTexts.Length; i++)
         {

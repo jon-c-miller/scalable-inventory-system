@@ -31,7 +31,7 @@ public static class InventoryRemove
         }
     }
 
-    public static void RemoveItemByType(List<InventoryItem> currentInventory, ItemTypes itemTypeToRemove)
+    public static void RemoveItemByType(List<InventoryItem> currentInventory, ItemIDs itemTypeToRemove)
     {
         // Loop backwards to remove the entry farthest from the start (helps support a compact inventory)
         int inventorySize = currentInventory.Count - 1;
@@ -40,7 +40,7 @@ public static class InventoryRemove
         {
             // Filter for items of the same type
             UnityEngine.Debug.LogWarning($"Filter for items of the same type...");
-            if (currentInventory[i].ItemType == itemTypeToRemove)
+            if (currentInventory[i].ItemID == itemTypeToRemove)
             {
                 // Handle cases where the item to be removed is stackable
                 if (InventoryDatabase.ItemDatabase[itemTypeToRemove].IsStackable)

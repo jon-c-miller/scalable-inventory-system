@@ -1,15 +1,15 @@
 [System.Serializable]
 public struct InventoryItemStat
 {
-    [UnityEngine.SerializeField] ItemStatTypes statType;
+    [UnityEngine.SerializeField] ItemStatIDs statID;
     [UnityEngine.SerializeField] int statValue;
 
-    public readonly ItemStatTypes Type => statType;
+    public readonly ItemStatIDs Type => statID;
     public readonly int Value => statValue;
 
-    public InventoryItemStat(ItemStatTypes type, int value)
+    public InventoryItemStat(ItemStatIDs id, int value)
     {
-        statType = type;
+        statID = id;
         statValue = value;
     }
 }

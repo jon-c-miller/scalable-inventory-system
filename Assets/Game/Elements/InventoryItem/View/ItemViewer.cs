@@ -15,15 +15,15 @@ public class ItemViewer : MonoBehaviour, IItemView
 
     public void IUpdateEntryBasedOnItem(InventoryItem item)
     {
-        if (item.ItemType == ItemTypes.None)
+        if (item.ItemID == ItemIDs.None)
         {
             IInitialize();
             return;
         }
 
         // Use the item's type to retrieve name and description from the item database
-        nameText.text = InventoryDatabase.ItemDatabase[item.ItemType].Name;
-        descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemType].Description;
+        nameText.text = InventoryDatabase.ItemDatabase[item.ItemID].Name;
+        descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemID].Description;
 
         // Keep track of the property text index to allow flexibility based on property type
         int propertyTextIndex = 0;

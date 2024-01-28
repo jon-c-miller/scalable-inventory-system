@@ -15,7 +15,7 @@ public static class InventoryAdd
 
                 // Filter for items of the same type and quality
                 UnityEngine.Debug.LogWarning($"Filter for items of the same type...");
-                if (currentItem.ItemType == itemToAdd.ItemType && currentItem.ItemQuality == itemToAdd.ItemQuality)
+                if (currentItem.ItemID == itemToAdd.ItemID && currentItem.ItemQuality == itemToAdd.ItemQuality)
                 {
                     int newQuantity = currentItem.ItemQuantity + itemToAdd.ItemQuantity;
                     InventoryItem inventoryAddition;
@@ -80,7 +80,7 @@ public static class InventoryAdd
         int actualItemCount = 0;
         for (int i = 0; i < currentInventory.Count; i++)
         {
-            if (currentInventory[i].ItemType == ItemTypes.None) continue;
+            if (currentInventory[i].ItemID == ItemIDs.None) continue;
 
             actualItemCount++;
         }
@@ -95,7 +95,7 @@ public static class InventoryAdd
         UnityEngine.Debug.LogWarning($"Try add to the first empty spot if available...");
         for (int i = 0; i < currentInventory.Count; i++)
         {
-            if (currentInventory[i].ItemType == ItemTypes.None)
+            if (currentInventory[i].ItemID == ItemIDs.None)
             {
                 currentInventory[i] = newItem;
                 return;

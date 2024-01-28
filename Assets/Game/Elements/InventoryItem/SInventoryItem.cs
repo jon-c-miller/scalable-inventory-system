@@ -6,6 +6,7 @@ public class SInventoryItem : ScriptableObject
 {
     public string Name;
     public string Description;
+    public ItemIDs ID;
     public ItemTypes Type;
     public List<SInventoryItemStat> PossibleStats = new();
     [Space]
@@ -14,6 +15,13 @@ public class SInventoryItem : ScriptableObject
 }
 
 public enum ItemTypes
+{
+    Aesthetica,
+    Gear,
+    Consumables,
+}
+
+public enum ItemIDs
 {
     None,
 

@@ -50,7 +50,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         else return;
 
         // Check for empty entries and nav again if so, and update the item view as long as the nav command is valid
-        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
+        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemID == ItemIDs.None)
             ISelectNextEntry(itemView);
         itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
@@ -70,7 +70,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         }
         else return;
 
-        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemType == ItemTypes.None)
+        if (skipEmptyEntries && inventoryBeingDisplayed[ISelectedInventoryItemIndex].ItemID == ItemIDs.None)
             ISelectPreviousEntry(itemView);
         itemView.IUpdateEntryBasedOnItem(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
@@ -108,7 +108,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             }
 
             // Handle empty entries
-            if (inventoryBeingDisplayed[i].ItemType == ItemTypes.None)
+            if (inventoryBeingDisplayed[i].ItemID == ItemIDs.None)
             {
                 // Clear canvas for the current entry
                 entries[currentEntryIndex].SetEntryText("", "");
@@ -118,7 +118,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
 
             // Gather data for name of entry based on the type of item at this index, as well as quantity
             Debug.LogWarning($"Updating entry at index {currentEntryIndex} based on inventory index {i}...");
-            string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemType].Name;
+            string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemID].Name;
             
             // Only show quantity if the item is stackable
             string entryQuantity = "";

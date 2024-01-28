@@ -8,7 +8,7 @@ using UnityEngine;
     // Inventory API
     public void InventoryAddItem(InventoryItem itemToAdd) => inventoryManagerAlt.AddItem(itemToAdd);
 
-    public void InventoryRemoveItemByType(ItemTypes itemType) => inventoryManagerAlt.RemoveItemByType(itemType);
+    public void InventoryRemoveItemByType(ItemIDs itemType) => inventoryManagerAlt.RemoveItemByType(itemType);
 
     public void InventoryRemoveSelectedItem() => inventoryManagerAlt.RemoveItemAtIndex();
 

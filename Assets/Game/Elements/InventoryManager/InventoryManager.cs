@@ -32,7 +32,7 @@ public class InventoryManager
         InventoryItem[] fullInventory = new InventoryItem[currentInventory.Count];
         for (int i = 0; i < currentInventory.Count; i++)
         {
-            if (currentInventory[i].ItemType == ItemTypes.None)
+            if (currentInventory[i].ItemID == ItemIDs.None)
             {
                 fullInventory[i] = new();
             }
@@ -60,7 +60,7 @@ public class InventoryManager
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
-    public void RemoveItemByType(ItemTypes itemTypeToRemove)
+    public void RemoveItemByType(ItemIDs itemTypeToRemove)
     {
         InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
         inventoryView.ISetCurrentInventory(GetInventory(), false);

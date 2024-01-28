@@ -8,7 +8,7 @@ public static class InventoryCompact
         for (int i = 0; i < currentInventory.Count; i++)
         {
             // Skip empty entries
-            if (currentInventory[i].ItemType == ItemTypes.None) continue;
+            if (currentInventory[i].ItemID == ItemIDs.None) continue;
 
             // Copy the current entry to the new inventory collection
             InventoryItem itemCopy = currentInventory[i].CopyItem();

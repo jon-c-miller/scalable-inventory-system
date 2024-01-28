@@ -17,7 +17,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [SerializeField] KeyCode selectNextEntryKey = KeyCode.S;
 
     [Header("Test Parameters")]
-    [SerializeField] ItemTypes desiredItemType;
+    [SerializeField] ItemIDs desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
     [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
     [SerializeField] int desiredRandomizeAmount = 12;

@@ -3,20 +3,20 @@ using UnityEngine;
 // Provides an API to update a unit's inventory at runtime
 [System.Serializable] public partial class GameAPI
 {
-    [SerializeField] InventoryManager inventoryManagerAlt = new();
+    [SerializeField] InventoryManager inventoryManager = new();
 
     // Inventory API
-    public void InventoryAddItem(InventoryItem itemToAdd) => inventoryManagerAlt.AddItem(itemToAdd);
+    public void InventoryAddItem(InventoryItem itemToAdd) => inventoryManager.AddItem(itemToAdd);
 
-    public void InventoryRemoveItemByType(ItemIDs itemType) => inventoryManagerAlt.RemoveItemByType(itemType);
+    public void InventoryRemoveItemByType(ItemIDs itemType) => inventoryManager.RemoveItemByType(itemType);
 
-    public void InventoryRemoveSelectedItem() => inventoryManagerAlt.RemoveItemAtIndex();
+    public void InventoryRemoveSelectedItem() => inventoryManager.RemoveItemAtIndex();
 
-    public void InventoryCompact() => inventoryManagerAlt.CompactItems();
+    public void InventoryCompact() => inventoryManager.CompactItems();
 
-    public void InventoryUpdateItemView(InventoryItem itemToView) => inventoryManagerAlt.UpdateView(itemToView);
+    public void InventoryUpdateItemView(InventoryItem itemToView) => inventoryManager.UpdateView(itemToView);
 
-    public void InventoryNavigateNext() => inventoryManagerAlt.NavNext();
+    public void InventoryNavigateNext() => inventoryManager.NavNext();
 
-    public void InventoryNavigatePrevious() => inventoryManagerAlt.NavPrevious();
+    public void InventoryNavigatePrevious() => inventoryManager.NavPrevious();
 }

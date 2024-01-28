@@ -3,6 +3,6 @@ public partial class GameAPI
 {
     public void InitializeAPI()
     {
-        inventoryManagerAlt.Initialize();
+        inventoryManager.Initialize();
     }
 }

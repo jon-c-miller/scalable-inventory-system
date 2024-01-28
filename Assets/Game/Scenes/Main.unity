@@ -1091,6 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ffaa5068f470748b9a63a9b4de45c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPanel: {fileID: 1118522330}
   entries:
   - {fileID: 70111168}
   - {fileID: 154426573}
@@ -1098,7 +1099,7 @@ MonoBehaviour:
   - {fileID: 1018074269}
   - {fileID: 417513159}
   - {fileID: 41673118}
-  concurrentEntriesToDisplay: 6
+  concurrentEntriesToDisplay: 5
   skipEmptyEntries: 0
   selectedColor: {r: 1, g: 0, b: 1, a: 1}
   unselectedColor: {r: 1, g: 0.5019608, b: 0, a: 1}

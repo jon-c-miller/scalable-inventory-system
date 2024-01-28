@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryViewer : MonoBehaviour, IInventoryView
 {
+    [SerializeField] RectTransform backgroundPanel;
     [SerializeField] ItemEntryDisplay[] entries;
     [SerializeField] int concurrentEntriesToDisplay = 6;
     [SerializeField] bool skipEmptyEntries;
@@ -35,6 +36,8 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
                 entries[i].gameObject.SetActive(i < concurrentEntriesToDisplay);
             }
         }
+        // Set background panel size based on active entries
+        backgroundPanel.sizeDelta = new Vector2(backgroundPanel.sizeDelta.x, 40 * concurrentEntriesToDisplay);
     }
 
     public void ISelectNextEntry(IItemView itemView)

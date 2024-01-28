@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showQuantity: 0
+  colorNameBasedOnQuality: 1
   nameText: {fileID: 1162249751642121251}
   descriptionText: {fileID: 1510694966108082433}
   quantityText: {fileID: 8938441313143689055}

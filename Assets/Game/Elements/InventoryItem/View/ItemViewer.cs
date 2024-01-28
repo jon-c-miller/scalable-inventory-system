@@ -4,6 +4,7 @@ using UnityEngine;
 public class ItemViewer : MonoBehaviour, IItemView
 {
     [SerializeField] bool showQuantity;
+    [SerializeField] bool colorNameBasedOnQuality;
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
     [SerializeField] UnityEngine.UI.Text descriptionText;
@@ -22,7 +23,7 @@ public class ItemViewer : MonoBehaviour, IItemView
         }
 
         // Use the item's type to retrieve name and description from the item database
-        nameText.text = InventoryDatabase.ItemDatabase[item.ItemID].Name;
+        nameText.text = StatTextFormatter.FormatNameText(item, colorNameBasedOnQuality);
         descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemID].Description;
 
         // Keep track of the property text index to allow flexibility based on property type

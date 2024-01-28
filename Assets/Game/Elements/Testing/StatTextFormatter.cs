@@ -1,6 +1,23 @@
 /// <summary> Provides a formatted text string based on a given item stat type. </summary>
 public static class StatTextFormatter
 {
+    public static string FormatNameText(InventoryItem item, bool colorBasedOnQuality)
+    {
+        string name = InventoryDatabase.ItemDatabase[item.ItemID].Name;
+
+        if (colorBasedOnQuality)
+        {
+            ItemQualityIDs quality = item.ItemQuality;
+            if (quality == ItemQualityIDs.Mundane)
+                return $"<color=white>{name}</color>";
+            else if (quality == ItemQualityIDs.Enchanted)
+                return $"<color=aqua>{name}</color>";
+            else return $"<color=purple>{name}</color>";
+        }
+
+        return name;
+    }
+
     public static string FormatQualityText(InventoryItem item)
     {
         // Set the item's quality text color based on its quality and level

@@ -14,7 +14,6 @@ public static class InventoryAdd
                 InventoryItem currentItem = currentInventory[i];
 
                 // Filter for items of the same type and quality
-                UnityEngine.Debug.LogWarning($"Filter for items of the same type...");
                 if (currentItem.ItemID == itemToAdd.ItemID && currentItem.ItemQuality == itemToAdd.ItemQuality)
                 {
                     int newQuantity = currentItem.ItemQuantity + itemToAdd.ItemQuantity;
@@ -60,7 +59,6 @@ public static class InventoryAdd
                     else
                     {
                         // Update the stack count as usual for addition amounts that fall within the stack limit
-                        UnityEngine.Debug.LogWarning($"Updating quantity to {newQuantity} ({currentInventory[i].ItemQuantity} + {itemToAdd.ItemQuantity})...");
                         inventoryAddition = currentItem.CopyItem(newQuantity);
                         currentInventory[i] = inventoryAddition;
                         return;
@@ -76,7 +74,6 @@ public static class InventoryAdd
     static void TryAddToFirstEmptySpot(List<InventoryItem> currentInventory, InventoryItem newItem, int inventoryAmountLimit)
     {
         // Get an actual item count by skipping empty entries
-        UnityEngine.Debug.LogWarning($"Get an actual item count by skipping empty entries.");
         int actualItemCount = 0;
         for (int i = 0; i < currentInventory.Count; i++)
         {

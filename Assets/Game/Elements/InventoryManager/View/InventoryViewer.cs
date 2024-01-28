@@ -101,11 +101,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         for (int i = displayFromInventoryIndex; i < concurrentEntriesToDisplay + displayFromInventoryIndex; i++)
         {
             // Don't try to display an entry outside of the actual inventory size
-            if (i >= inventoryBeingDisplayed.Length)
-            {
-                Debug.LogWarning("Reached end of inventory.");
-                return;
-            }
+            if (i >= inventoryBeingDisplayed.Length) return;
 
             // Handle empty entries
             if (inventoryBeingDisplayed[i].ItemID == ItemIDs.None)
@@ -117,7 +113,6 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             }
 
             // Gather data for name of entry based on the type of item at this index, as well as quantity
-            Debug.LogWarning($"Updating entry at index {currentEntryIndex} based on inventory index {i}...");
             string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemID].Name;
             
             // Only show quantity if the item is stackable

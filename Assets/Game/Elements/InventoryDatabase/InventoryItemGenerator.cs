@@ -7,7 +7,7 @@ public static class InventoryItemGenerator
     public static InventoryItem CreateRandomItemAvailableAtLevel(int level)
     {
         // Get a random item type based on the amount of item types and their unlock level, skipping None
-        SInventoryItem itemTemplate = new();
+        SInventoryItem itemTemplate = null;
         int itemTypesCount = System.Enum.GetValues(typeof(ItemIDs)).Length;
         int tries = 999;
         while (tries > 0)

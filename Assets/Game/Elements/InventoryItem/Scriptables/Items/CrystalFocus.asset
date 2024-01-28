@@ -15,10 +15,13 @@ MonoBehaviour:
   Name: Crystal Focus
   Description: A multifaceted crystal of astounding beauty. Its warmth gives you
     confidence for the struggles ahead.
-  Type: 2
-  PossibleStats:
-  - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
+  ID: 2
+  Type: 1
+  CoreStats:
   - {fileID: 11400000, guid: 79d8e5679d065584aa4ebdf27360af93, type: 2}
+  OptionalStats:
+  - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
   - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  IsStackable: 0
+  MaxQuality: 3
   MaxDropAmount: 0
+  UnlockLevel: 2

@@ -15,9 +15,13 @@ MonoBehaviour:
   Name: Savory Pastry
   Description: A perfectly baked pastry tantalizing to look upon, promising the utmost
     in culinary delight.
-  Type: 3
-  PossibleStats:
+  ID: 4
+  Type: 2
+  CoreStats:
+  - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
   - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
-  - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  IsStackable: 1
+  OptionalStats:
+  - {fileID: 11400000, guid: e5f80b2279752ae42950a083a52629c3, type: 2}
+  MaxQuality: 2
   MaxDropAmount: 2
+  UnlockLevel: 1

@@ -8,10 +8,22 @@ public class SInventoryItem : ScriptableObject
     public string Description;
     public ItemIDs ID;
     public ItemTypes Type;
-    public List<SInventoryItemStat> PossibleStats = new();
+    public List<SInventoryItemStat> CoreStats = new();      // Stats every instance of the item will have
+    public List<SInventoryItemStat> OptionalStats = new();  // Stats added based on quality
+    public ItemQualityIDs MaxQuality = ItemQualityIDs.Mundane;
     [Space]
-    public bool IsStackable;
     public int MaxDropAmount;
+    public int UnlockLevel;
+
+    public bool CheckForCoreStat(ItemStatIDs stat)
+    {
+        for (int i = 0; i < CoreStats.Count; i++)
+        {
+            if (CoreStats[i].ID == stat)
+                return true;
+        }
+        return false;
+    }
 }
 
 public enum ItemTypes
@@ -32,6 +44,7 @@ public enum ItemIDs
     CrystalFocus,
 
     // Consumables
+    BurntCookie,
     SavoryPastry,
 }
 

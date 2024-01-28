@@ -7,15 +7,14 @@ public class SInventoryItemStat : ScriptableObject
     public string Description;
     public ItemStatIDs ID;
     [Space]
-    [Range(1, 10)] public int ValueLow;
-    [Range(1, 10)] public int ValueHigh;
-    public int PerLevelIncrease;
+    [Range(1, 300)] public int Value = 1;
+    [Range(0, 100)] public int Variance;
 }
 
 public enum ItemStatIDs
 {
-    // Common modifiers
-    Size,
+    // Core modifiers that fundamentally define the item
+    Stackable,
     EffectRange,
 
     // Persistent increases while under effect of item (equipped, near, etc.)
@@ -24,5 +23,6 @@ public enum ItemStatIDs
     ComfortIncrease,
 
     // One shot updates upon consumption
-    HealingAmount,
+    Healing,
+    ManaRecovery,
 }

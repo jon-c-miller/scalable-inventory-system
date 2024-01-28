@@ -1,37 +1,39 @@
+using System.Drawing;
 /// <summary> Provides a formatted text string based on a given item stat type. </summary>
 public static class StatTextFormatter
 {
-    public static string FormatQualityText(ItemQualityIDs quality, int itemLevel)
+    public static string FormatQualityText(InventoryItem item)
     {
         // Set the item's quality text color based on its quality and level
+        ItemQualityIDs quality = item.ItemQuality;
         if (quality == ItemQualityIDs.Mundane)
-            return $"<color=white>{quality}</color> (Level {itemLevel})";
+            return $"<color=white>{quality}</color>";
         else if (quality == ItemQualityIDs.Enchanted)
-            return $"<color=aqua>{quality}</color> (Level {itemLevel})";
-        else return $"<color=purple>{quality}</color> (Level {itemLevel})";
+            return $"<color=aqua>{quality}</color>";
+        else return $"<color=purple>{quality}</color>";
     }
 
     public static string FormatStatText(InventoryItemStat statType)
     {
         switch (statType.Type)
         {
-            case ItemStatTypes.Size:
-                return "";
-
-            case ItemStatTypes.EffectRange:
+            case ItemStatIDs.EffectRange:
                 return $"{InventoryDatabase.StatDatabase[statType.Type].Name} {statType.Value}";
 
-            case ItemStatTypes.ManaIncrease:
-                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=blue>+{statType.Value}</color>";
+            case ItemStatIDs.ManaIncrease:
+                return $"<color=lightblue>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
 
-            case ItemStatTypes.DamageIncrease:
-                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=red>+{statType.Value}</color>";
+            case ItemStatIDs.DamageIncrease:
+                return $"<color=red>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
 
-            case ItemStatTypes.ComfortIncrease:
-                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=teal>+{statType.Value}</color>";
+            case ItemStatIDs.ComfortIncrease:
+                return $"<color=teal>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
 
-            case ItemStatTypes.HealingAmount:
-                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} <color=green>+{statType.Value}</color>";
+            case ItemStatIDs.Healing:
+                return $"<color=pink>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+
+            case ItemStatIDs.ManaRecovery:
+                return $"<color=lightblue>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
         }
         return "";
     }

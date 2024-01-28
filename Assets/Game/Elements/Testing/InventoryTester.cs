@@ -19,8 +19,10 @@ public class InventoryTesterAlternate : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemIDs desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
-    [SerializeField, Range(1, 20)] int desiredItemLevel = 1;
+    [SerializeField, Range(1, 20)] int itemLevelAvailable;
+    [Space]
     [SerializeField] int desiredRandomizeAmount = 12;
+    [SerializeField] bool randomizeLevel;
     [Space]
     [SerializeField] InventoryItem lastGeneratedItem;
 
@@ -28,7 +30,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     {
         if (Input.GetKeyDown(createDesiredItemKey))
         {
-            lastGeneratedItem = InventoryItemGenerator.CreateInventoryItem(desiredItemType, desiredItemQuality, desiredItemLevel);
+            lastGeneratedItem = InventoryItemGenerator.CreateItemOfSpecificTypeAndQuality(desiredItemType, desiredItemQuality);
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {
@@ -62,16 +64,11 @@ public class InventoryTesterAlternate : MonoBehaviour
         {
             for (int i = 0; i < desiredRandomizeAmount; i++)
             {
-                // Get a random item type based on the amount of item types, skipping None
-                int itemTypesCount = System.Enum.GetValues(typeof(ItemTypes)).Length;
-                ItemTypes randomItemType = (ItemTypes)Random.Range(1, itemTypesCount);
-
-                // Get a random quality type based on the amount of quality types
-                int itemQualityTypesCount = System.Enum.GetValues(typeof(ItemQualityIDs)).Length;
-                ItemQualityIDs randomQuality = (ItemQualityIDs)Random.Range(1, itemQualityTypesCount + 1);
-
                 // Generate a new item and add it to the inventory
-                InventoryItem newItem = InventoryItemGenerator.CreateInventoryItemAlternate(randomItemType, randomQuality, Random.Range(1, 100));
+                int itemLevel = itemLevelAvailable;
+                if (randomizeLevel)
+                    itemLevel = Random.Range(1, 100);
+                InventoryItem newItem = InventoryItemGenerator.CreateRandomItemAvailableAtLevel(itemLevel);
                 Game.Instance.InventoryAddItem(newItem);
             }
         }

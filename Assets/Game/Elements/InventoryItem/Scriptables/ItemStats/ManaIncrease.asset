@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Mana
   Description: Your spiritual energy pool is deepened.
-  Type: 2
-  ValueLow: 4
-  ValueHigh: 5
-  PerLevelIncrease: 6
+  ID: 2
+  Value: 10
+  Variance: 3

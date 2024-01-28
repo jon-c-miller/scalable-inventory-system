@@ -4,40 +4,121 @@ using UnityEngine;
 /// <summary> Generates an item with randomized stats based on a given type, quality, and level. </summary>
 public static class InventoryItemGenerator
 {
-    public static InventoryItem CreateInventoryItem(ItemTypes type, ItemQualityIDs quality, int level)
+    public static InventoryItem CreateRandomItemAvailableAtLevel(int level)
+    {
+        // Get a random item type based on the amount of item types and their unlock level, skipping None
+        SInventoryItem itemTemplate = new();
+        int itemTypesCount = System.Enum.GetValues(typeof(ItemIDs)).Length;
+        int tries = 999;
+        while (tries > 0)
+        {
+            tries--;
+            ItemIDs randomItemType = (ItemIDs)Random.Range(1, itemTypesCount);
+            SInventoryItem template = InventoryDatabase.ItemDatabase[randomItemType];
+            if (template.UnlockLevel <= level)
+            {
+                itemTemplate = template;
+                break;
+            }
+        }
+
+        // Generate quality based on item's max quality limiter
+        int optionalStatCount = 0;
+        int itemQuality = 1;
+        int itemMaxQuality = (int)itemTemplate.MaxQuality;
+        if (itemMaxQuality > 1)
+        {
+            // Set stat count based on item quality
+            itemQuality = Random.Range(1, itemMaxQuality + 1);
+            optionalStatCount = itemQuality - 1;
+        }
+
+        // Generate core stats
+        List<InventoryItemStat> generatedStats = new();
+        for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
+        {
+            SInventoryItemStat coreStat = itemTemplate.CoreStats[i];
+
+            int statValue = GenerateStatValue(coreStat.Value, coreStat.Variance, itemQuality);
+            generatedStats.Add(new InventoryItemStat(coreStat.ID, statValue));
+        }
+
+        // Generate optional stats based on quality (uses the ItemQualityIDs enum value as the amount of stats)
+        for (int i = 0; i < optionalStatCount; i++)
+        {
+            // Prevent errors with not enough possible stats to match item quality
+            if (i >= itemTemplate.OptionalStats.Count) break;
+
+            SInventoryItemStat optionalStat = itemTemplate.OptionalStats[i];
+            int statValue = GenerateStatValue(optionalStat.Value, optionalStat.Variance, itemQuality);
+
+            // Add to stats collection
+            generatedStats.Add(new InventoryItemStat(optionalStat.ID, statValue));
+        }
+
+        // Handle quantity
+        int quantity = 1;
+        bool isStackable = itemTemplate.CheckForCoreStat(ItemStatIDs.Stackable);
+        if (isStackable)
+            quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
+
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, generatedStats.ToArray(), isStackable, quantity);
+    }
+
+    static int GenerateStatValue(int baseValue, int variance, int quality)
+    {
+        // Factor in quality, increasing the stat's effectiveness every quality level above 1
+        int qualityAdjustedValue = baseValue;
+        qualityAdjustedValue *= quality;
+
+        // Add variance based on quality
+        int statVariance = Random.Range(0, variance + 1);
+        int varianceAdjustedValue = qualityAdjustedValue + (statVariance * quality);
+
+        return varianceAdjustedValue;
+    }
+
+    public static InventoryItem CreateItemOfSpecificTypeAndQuality(ItemIDs type, ItemQualityIDs quality)
     {
         SInventoryItem itemTemplate = InventoryDatabase.ItemDatabase[type];
 
-        // Set stat count based on desired quality by using the enum entry as the amount of stats
-        int numberOfStats = (int)quality;
+        // Generate stat count based on quality (uses the ItemQualityIDs enum value as the amount of optional stats)
+        int itemQuality = (int)quality;
+        int itemMaxQuality = (int)itemTemplate.MaxQuality;
 
-        // Ensure the level is valid
-        if (level < 1)
-            level = 1;
+        // Limit quality to item's max
+        if (itemQuality > itemMaxQuality)
+            itemQuality = itemMaxQuality;
 
-        // Generate a quantity (always results in 1 unless item is intended to drop as a stack)
-        int quantityToGenerate = itemTemplate.IsStackable ? Random.Range(1, itemTemplate.MaxDropAmount + 1) : 1;
-
-        // Generate stat types
+        // Generate core stats
         List<InventoryItemStat> generatedStats = new();
-        for (int i = 0; i < numberOfStats; i++)
+        for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
         {
-            // Prevent errors with not enough possible stats to match item quality
-            if (i >= itemTemplate.PossibleStats.Count) break;
-
-            SInventoryItemStat newStat = itemTemplate.PossibleStats[i];
-
-            // Randomize stat values based on low/high constraints and desired level
-            int randomBaseValue = Random.Range(newStat.ValueLow, newStat.ValueHigh + 1);
-            int valueAfterLevelModifier = randomBaseValue * level;
-
-            // Update stat value based on item level if applicable
-            int valueAfterPerLevelIncrease = valueAfterLevelModifier + (1 * newStat.PerLevelIncrease);
-
-            // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(newStat.Type, valueAfterPerLevelIncrease));
+            SInventoryItemStat coreStat = itemTemplate.CoreStats[i];
+            int statValue = GenerateStatValue(coreStat.Value, coreStat.Variance, itemQuality);
+            generatedStats.Add(new InventoryItemStat(coreStat.ID, statValue));
         }
 
-        return new InventoryItem(type, quality, level, generatedStats.ToArray(), itemTemplate.IsStackable, quantityToGenerate);
+        // Generate optional stats based on qualities over the lowest
+        int optionalStatCount = itemQuality > 1 ? itemQuality - 1 : 1;
+        for (int i = 0; i < optionalStatCount; i++)
+        {
+            // Prevent errors with not enough possible stats to match item quality
+            if (i >= itemTemplate.OptionalStats.Count) break;
+
+            SInventoryItemStat optionalStat = itemTemplate.OptionalStats[i];
+            int statValue = GenerateStatValue(optionalStat.Value, optionalStat.Variance, itemQuality);
+
+            // Add to stats collection
+            generatedStats.Add(new InventoryItemStat(optionalStat.ID, statValue));
+        }
+
+        // Handle quantity
+        int quantity = 1;
+        bool isStackable = itemTemplate.CheckForCoreStat(ItemStatIDs.Stackable);
+        if (isStackable)
+            quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
+
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, generatedStats.ToArray(), isStackable, quantity);
     }
 }

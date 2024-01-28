@@ -31,15 +31,27 @@ public class ItemViewer : MonoBehaviour, IItemView
         // Display item quantity if over 1 and showQuantity is true
         quantityText.text = item.ItemQuantity > 1 && showQuantity ? item.ItemQuantity.ToString() : "";
 
-        qualityText.text = StatTextFormatter.FormatQualityText(item.ItemQuality, item.ItemLevel);
+        qualityText.text = StatTextFormatter.FormatQualityText(item);
 
+        // Clear the property texts
         for (int i = 0; i < propertyTexts.Length; i++)
         {
-            // Flag to clear display for texts above stats count on item
-            bool aboveStatsCount = i >= item.ItemStats.Length;
+            propertyTexts[i].text = "";
+        }
 
-            propertyTexts[propertyTextIndex].text = aboveStatsCount ? "" : StatTextFormatter.FormatStatText(item.ItemStats[i]);
-            propertyTextIndex++;
+        // Assign the item stats' names to the property texts, skipping empty entries
+        for (int i = 0; i < propertyTexts.Length; i++)
+        {
+            if (i < item.ItemStats.Length)
+            {
+                string newText = StatTextFormatter.FormatStatText(item.ItemStats[i]);
+
+                if (newText != "")
+                {
+                    propertyTexts[propertyTextIndex].text = newText;
+                    propertyTextIndex++;
+                }
+            }
         }
     }
 

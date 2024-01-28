@@ -1,4 +1,3 @@
-using System.Drawing;
 /// <summary> Provides a formatted text string based on a given item stat type. </summary>
 public static class StatTextFormatter
 {

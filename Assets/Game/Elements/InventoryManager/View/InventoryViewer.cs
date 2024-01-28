@@ -30,6 +30,9 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             {
                 entries[i].ClearEntryText();
                 entries[i].UpdateTextColor(unselectedColor);
+
+                // Enable/disable the entry if it is within the desired amount to display
+                entries[i].gameObject.SetActive(i < concurrentEntriesToDisplay);
             }
         }
     }

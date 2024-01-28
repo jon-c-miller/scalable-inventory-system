@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fde18c50872e7a40aa4c687b2b636ec, type: 3}
-  m_Name: HealingAmount
+  m_Name: HealthRecovery
   m_EditorClassIdentifier: 
-  Name: Healing
+  Name: Health Recovery
   Description: You recover some health.
-  Type: 5
-  ValueLow: 4
-  ValueHigh: 7
-  PerLevelIncrease: 4
+  ID: 5
+  Value: 1
+  Variance: 0

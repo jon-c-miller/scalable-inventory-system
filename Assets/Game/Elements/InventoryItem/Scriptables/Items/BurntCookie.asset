@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2314fba57a166a4e8984026bf79211a, type: 3}
+  m_Name: BurntCookie
+  m_EditorClassIdentifier: 
+  Name: Burnt Cookie
+  Description: A slightly overbaked and unevenly shaped cookie that invokes an inexplicable
+    desire to discover how soft the interior is.
+  ID: 3
+  Type: 2
+  CoreStats:
+  - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
+  - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
+  OptionalStats: []
+  MaxQuality: 1
+  MaxDropAmount: 2

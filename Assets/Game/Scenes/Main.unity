@@ -510,11 +510,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ec81e5058f22e649a4c5a82a675f843, type: 2}
   - {fileID: 11400000, guid: 3627087ad126878418eefac48c602863, type: 2}
   - {fileID: 11400000, guid: 15b2da14c32e1c14e86a3bfffc168b65, type: 2}
+  - {fileID: 11400000, guid: 179314c02b4190241a1c96b3e18b386c, type: 2}
   statTemplates:
   - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
   - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
   - {fileID: 11400000, guid: 79d8e5679d065584aa4ebdf27360af93, type: 2}
   - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
+  - {fileID: 11400000, guid: e5f80b2279752ae42950a083a52629c3, type: 2}
+  - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
 --- !u!1001 &417513157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -662,7 +665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -60}
+  m_AnchoredPosition: {x: -20, y: -50}
   m_SizeDelta: {x: 560, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &505950644
@@ -762,14 +765,14 @@ MonoBehaviour:
   selectNextEntryKey: 115
   desiredItemType: 1
   desiredItemQuality: 2
-  desiredItemLevel: 1
-  randomizeAmount: 12
-  generateEmptyEntries: 0
+  itemLevelAvailable: 3
+  desiredRandomizeAmount: 12
+  randomizeLevel: 0
   lastGeneratedItem:
-    itemType: 0
+    itemHash: 0
     itemID: 0
+    itemType: 0
     itemQuality: 0
-    itemLevel: 0
     itemStats: []
     itemQuantity: 0
     isStackable: 0
@@ -886,13 +889,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2030611344}
+  - {fileID: 1553076313}
   m_Father: {fileID: 1396837972}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 60}
+  m_SizeDelta: {x: 600, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &756726542
 MonoBehaviour:
@@ -1169,6 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc994361071f05f4681b3eb1b892d814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showQuantity: 0
   nameText: {fileID: 2030611345}
   descriptionText: {fileID: 505950644}
   quantityText: {fileID: 1258564322}
@@ -1522,10 +1528,10 @@ MonoBehaviour:
       inventoryViewObject: {fileID: 1120150105}
       itemViewObject: {fileID: 1027260082}
       currentInventory:
-      - itemType: 0
+      - itemHash: 0
         itemID: 0
+        itemType: 0
         itemQuality: 0
-        itemLevel: 0
         itemStats: []
         itemQuantity: 0
         isStackable: 0
@@ -1580,13 +1586,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 756726541}
-  - {fileID: 2030611344}
   - {fileID: 505950643}
   - {fileID: 1955677931}
   - {fileID: 944607596}
   - {fileID: 1421246007}
   - {fileID: 1258564321}
-  - {fileID: 1553076313}
   m_Father: {fileID: 2109876906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -1854,11 +1858,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1396837972}
+  m_Father: {fileID: 756726541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 14, y: -30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 14, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1553076314
@@ -1894,7 +1898,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Quality
 --- !u!222 &1553076315
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2046,11 +2050,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1396837972}
+  m_Father: {fileID: 756726541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -30}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2030611345
@@ -2075,10 +2079,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9bd7d5d5e56e29d449e2ae5066d9e7e9, type: 3}
-    m_FontSize: 48
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 5
     m_AlignByGeometry: 0
@@ -2086,7 +2090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Item name
 --- !u!222 &2030611346
 CanvasRenderer:
   m_ObjectHideFlags: 0

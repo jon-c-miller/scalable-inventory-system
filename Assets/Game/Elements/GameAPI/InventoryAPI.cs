@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Provides an API to update a unit's inventory at runtime
-[System.Serializable] public partial class GameAPI
+public partial class GameAPI
 {
     [SerializeField] InventoryManager inventoryManager = new();
 

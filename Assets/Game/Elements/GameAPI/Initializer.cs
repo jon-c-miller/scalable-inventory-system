@@ -1,5 +1,5 @@
 // Initializes all managers in the game API
-public partial class GameAPI
+[System.Serializable] public partial class GameAPI
 {
     public void InitializeAPI()
     {

@@ -8,22 +8,14 @@ public class SInventoryItem : ScriptableObject
     public string Description;
     public ItemIDs ID;
     public ItemTypes Type;
-    public List<SInventoryItemStat> CoreStats = new();      // Stats every instance of the item will have
-    public List<SInventoryItemStat> OptionalStats = new();  // Stats added based on quality
+    public List<ItemStatIDs> CoreStats = new();         // Stats every instance of the item will have
+    public List<ItemStatIDs> OptionalStats = new();     // Stats generated based on quality
     public ItemQualityIDs MaxQuality = ItemQualityIDs.Mundane;
     [Space]
     public int MaxDropAmount;
     public int UnlockLevel;
 
-    public bool CheckForCoreStat(ItemStatIDs stat)
-    {
-        for (int i = 0; i < CoreStats.Count; i++)
-        {
-            if (CoreStats[i].ID == stat)
-                return true;
-        }
-        return false;
-    }
+    public bool CheckForCoreStat(ItemStatIDs stat) => CoreStats.Contains(stat);
 }
 
 public enum ItemTypes

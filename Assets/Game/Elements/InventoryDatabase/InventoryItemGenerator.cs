@@ -37,10 +37,12 @@ public static class InventoryItemGenerator
         List<InventoryItemStat> generatedStats = new();
         for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
         {
-            SInventoryItemStat coreStat = itemTemplate.CoreStats[i];
+            // Get the stat template from the inventory database based on the ItemStatIDs key
+            ItemStatIDs statID = itemTemplate.CoreStats[i];
+            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
 
-            int statValue = GenerateStatValue(coreStat.Value, coreStat.Variance, itemQuality);
-            generatedStats.Add(new InventoryItemStat(coreStat.ID, statValue));
+            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
+            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Generate optional stats based on quality (uses the ItemQualityIDs enum value as the amount of stats)
@@ -49,11 +51,13 @@ public static class InventoryItemGenerator
             // Prevent errors with not enough possible stats to match item quality
             if (i >= itemTemplate.OptionalStats.Count) break;
 
-            SInventoryItemStat optionalStat = itemTemplate.OptionalStats[i];
-            int statValue = GenerateStatValue(optionalStat.Value, optionalStat.Variance, itemQuality);
+            // Get the stat template from the inventory database based on the ItemStatIDs key
+            ItemStatIDs statID = itemTemplate.OptionalStats[i];
+            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
+            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
 
             // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(optionalStat.ID, statValue));
+            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Handle quantity
@@ -94,9 +98,11 @@ public static class InventoryItemGenerator
         List<InventoryItemStat> generatedStats = new();
         for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
         {
-            SInventoryItemStat coreStat = itemTemplate.CoreStats[i];
-            int statValue = GenerateStatValue(coreStat.Value, coreStat.Variance, itemQuality);
-            generatedStats.Add(new InventoryItemStat(coreStat.ID, statValue));
+            // Get the stat template from the inventory database based on the ItemStatIDs key
+            ItemStatIDs statID = itemTemplate.CoreStats[i];
+            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
+            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
+            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Generate optional stats based on qualities over the lowest
@@ -106,11 +112,13 @@ public static class InventoryItemGenerator
             // Prevent errors with not enough possible stats to match item quality
             if (i >= itemTemplate.OptionalStats.Count) break;
 
-            SInventoryItemStat optionalStat = itemTemplate.OptionalStats[i];
-            int statValue = GenerateStatValue(optionalStat.Value, optionalStat.Variance, itemQuality);
+            // Get the stat template from the inventory database based on the ItemStatIDs key
+            ItemStatIDs statID = itemTemplate.OptionalStats[i];
+            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
+            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
 
             // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(optionalStat.ID, statValue));
+            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Handle quantity

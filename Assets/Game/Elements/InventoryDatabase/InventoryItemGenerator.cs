@@ -22,64 +22,66 @@ public static class InventoryItemGenerator
             }
         }
 
-        // Generate quality based on item's max quality limiter
-        int optionalStatCount = 0;
+        // Generate quality based on item's max quality limiter (use ItemQualityIDs enum value as the amount of stats)
+        int secondaryStatAmountLimit = 0;
         int itemQuality = 1;
         int itemMaxQuality = (int)itemTemplate.MaxQuality;
         if (itemMaxQuality > 1)
         {
-            // Set stat count based on item quality
+            // Add secondary stats for any quality above 1 (lowest level quality)
             itemQuality = Random.Range(1, itemMaxQuality + 1);
-            optionalStatCount = itemQuality - 1;
+            secondaryStatAmountLimit = itemQuality - 1;
         }
 
-        // Generate core stats
-        List<InventoryItemStat> generatedStats = new();
-        for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
+        // If there is a primary stat, assign value based on that stat's modifier/variance and item level
+        InventoryItemStat primaryStat = new();
+        ItemStatIDs primaryStatID = itemTemplate.PrimaryStat;
+        if (primaryStatID != ItemStatIDs.None)
         {
-            // Get the stat template from the inventory database based on the ItemStatIDs key
-            ItemStatIDs statID = itemTemplate.CoreStats[i];
-            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
-
-            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
-            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
+            SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
+            int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, level, itemQuality);
+            primaryStat = new(primaryStatID, primaryStatValue);
         }
 
-        // Generate optional stats based on quality (uses the ItemQualityIDs enum value as the amount of stats)
-        for (int i = 0; i < optionalStatCount; i++)
+        // Generate secondary stats based on quality 
+        List<InventoryItemStat> secondaryStats = new();
+        for (int i = 0; i < secondaryStatAmountLimit; i++)
         {
-            // Prevent errors with not enough possible stats to match item quality
-            if (i >= itemTemplate.OptionalStats.Count) break;
+            // Prevent errors with not enough possible stats to match the max determined by item quality
+            if (i >= itemTemplate.AssignableStats.Count) break;
 
             // Get the stat template from the inventory database based on the ItemStatIDs key
-            ItemStatIDs statID = itemTemplate.OptionalStats[i];
+            ItemStatIDs statID = itemTemplate.AssignableStats[i];
             SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
-            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
+            int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, level, itemQuality);
 
             // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
+            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Handle quantity
         int quantity = 1;
-        bool isStackable = itemTemplate.CheckForCoreStat(ItemStatIDs.Stackable);
+        bool isStackable = itemTemplate.CheckForDefiningStat(ItemStatIDs.Stackable);
         if (isStackable)
             quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
 
-        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, generatedStats.ToArray(), isStackable, quantity);
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, quantity);
     }
 
-    static int GenerateStatValue(int baseValue, int variance, int quality)
+    static int GenerateStatValue(float statModifier, float statVariance, int itemLevel, int quality)
     {
         // Factor in quality, increasing the stat's effectiveness every quality level above 1
-        int qualityAdjustedValue = baseValue;
+        float qualityAdjustedValue = statModifier;
         qualityAdjustedValue *= quality;
 
-        // Add variance based on quality
-        int statVariance = Random.Range(0, variance + 1);
-        int varianceAdjustedValue = qualityAdjustedValue + (statVariance * quality);
+        // Adjust the value based on level if given level is over 0
+        float levelAdjustedValue = itemLevel > 0 ? qualityAdjustedValue * itemLevel : qualityAdjustedValue;
 
-        return varianceAdjustedValue;
+        // Add variance based on quality
+        float generatedVariance = Random.Range(0, statVariance);
+        float varianceAdjustedValue = levelAdjustedValue + (generatedVariance * quality);
+
+        return (int)varianceAdjustedValue;
     }
 
     public static InventoryItem CreateItemOfSpecificTypeAndQuality(ItemIDs type, ItemQualityIDs quality)
@@ -94,39 +96,35 @@ public static class InventoryItemGenerator
         if (itemQuality > itemMaxQuality)
             itemQuality = itemMaxQuality;
 
-        // Generate core stats
-        List<InventoryItemStat> generatedStats = new();
-        for (int i = 0; i < itemTemplate.CoreStats.Count; i++)
-        {
-            // Get the stat template from the inventory database based on the ItemStatIDs key
-            ItemStatIDs statID = itemTemplate.CoreStats[i];
-            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
-            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
-            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
-        }
+        // Assign value to primary stat based on that stat's modifier/variance and item level
+        ItemStatIDs primaryStatID = itemTemplate.PrimaryStat;
+        SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
+        int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, 0, itemQuality);
+        InventoryItemStat primaryStat = new(primaryStatID, primaryStatValue);
 
-        // Generate optional stats based on qualities over the lowest
-        int optionalStatCount = itemQuality > 1 ? itemQuality - 1 : 1;
-        for (int i = 0; i < optionalStatCount; i++)
+        // Generate secondary stats based on quality 
+        int secondaryStatAmountLimit = itemQuality > 1 ? itemQuality - 1 : 1;
+        List<InventoryItemStat> secondaryStats = new();
+        for (int i = 0; i < secondaryStatAmountLimit; i++)
         {
-            // Prevent errors with not enough possible stats to match item quality
-            if (i >= itemTemplate.OptionalStats.Count) break;
+            // Prevent errors with not enough possible stats to match the max determined by item quality
+            if (i >= itemTemplate.AssignableStats.Count) break;
 
             // Get the stat template from the inventory database based on the ItemStatIDs key
-            ItemStatIDs statID = itemTemplate.OptionalStats[i];
+            ItemStatIDs statID = itemTemplate.AssignableStats[i];
             SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
-            int statValue = GenerateStatValue(statTemplate.Value, statTemplate.Variance, itemQuality);
+            int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, 0, itemQuality);
 
             // Add to stats collection
-            generatedStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
+            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
         }
 
         // Handle quantity
         int quantity = 1;
-        bool isStackable = itemTemplate.CheckForCoreStat(ItemStatIDs.Stackable);
+        bool isStackable = itemTemplate.CheckForDefiningStat(ItemStatIDs.Stackable);
         if (isStackable)
             quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
 
-        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, generatedStats.ToArray(), isStackable, quantity);
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, quantity);
     }
 }

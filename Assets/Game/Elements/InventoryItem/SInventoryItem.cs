@@ -8,14 +8,15 @@ public class SInventoryItem : ScriptableObject
     public string Description;
     public ItemIDs ID;
     public ItemTypes Type;
-    public List<ItemStatIDs> CoreStats = new();         // Stats every instance of the item will have
-    public List<ItemStatIDs> OptionalStats = new();     // Stats generated based on quality
+    public ItemStatIDs PrimaryStat;                     // The primary stat value for this item
+    public List<ItemStatIDs> DefiningStats = new();     // Stats that define the way the item works (stackable, etc.)
+    public List<ItemStatIDs> AssignableStats = new();   // All stats that can be assigned based on quality and chance
     public ItemQualityIDs MaxQuality = ItemQualityIDs.Mundane;
     [Space]
     public int MaxDropAmount;
     public int UnlockLevel;
 
-    public bool CheckForCoreStat(ItemStatIDs stat) => CoreStats.Contains(stat);
+    public bool CheckForDefiningStat(ItemStatIDs stat) => DefiningStats.Contains(stat);
 }
 
 public enum ItemTypes

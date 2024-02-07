@@ -43,9 +43,9 @@ public class ItemViewer : MonoBehaviour, IItemView
         // Assign the item stats' names to the property texts, skipping empty entries
         for (int i = 0; i < propertyTexts.Length; i++)
         {
-            if (i < item.ItemStats.Length)
+            if (i < item.ItemSecondaryStats.Length)
             {
-                string newText = StatTextFormatter.FormatStatText(item.ItemStats[i]);
+                string newText = StatTextFormatter.FormatStatText(item.ItemSecondaryStats[i]);
 
                 if (newText != "")
                 {

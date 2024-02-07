@@ -7,12 +7,14 @@ public class SInventoryItemStat : ScriptableObject
     public string Description;
     public ItemStatIDs ID;
     [Space]
-    [Range(1, 300)] public int Value = 1;
-    [Range(0, 100)] public int Variance;
+    [Range(0.01f, 300f)] public float Modifier = 1;
+    [Range(0, 100f)] public float Variance;
 }
 
 public enum ItemStatIDs
 {
+    None,
+
     // Core modifiers that fundamentally define the item
     Stackable,
     EffectRange,

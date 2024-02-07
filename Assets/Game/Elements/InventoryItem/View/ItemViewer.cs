@@ -8,9 +8,10 @@ public class ItemViewer : MonoBehaviour, IItemView
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
     [SerializeField] UnityEngine.UI.Text descriptionText;
+    [SerializeField] UnityEngine.UI.Text primaryStatText;
+    [SerializeField] UnityEngine.UI.Text[] secondaryStatTexts;
     [SerializeField] UnityEngine.UI.Text quantityText;
     [SerializeField] UnityEngine.UI.Text qualityText;
-    [SerializeField] UnityEngine.UI.Text[] propertyTexts;
 
     public IItemView Interface => this;
 
@@ -26,31 +27,36 @@ public class ItemViewer : MonoBehaviour, IItemView
         nameText.text = StatTextFormatter.FormatNameText(item, colorNameBasedOnQuality);
         descriptionText.text = InventoryDatabase.ItemDatabase[item.ItemID].Description;
 
-        // Keep track of the property text index to allow flexibility based on property type
-        int propertyTextIndex = 0;
+        // Keep track of the stat text index to allow flexibility based on stat type
+        int statTextIndex = 0;
 
         // Display item quantity if over 1 and showQuantity is true
         quantityText.text = item.ItemQuantity > 1 && showQuantity ? item.ItemQuantity.ToString() : "";
 
         qualityText.text = StatTextFormatter.FormatQualityText(item);
 
-        // Clear the property texts
-        for (int i = 0; i < propertyTexts.Length; i++)
+        // Clear the stat texts
+        primaryStatText.text = "";
+        for (int i = 0; i < secondaryStatTexts.Length; i++)
         {
-            propertyTexts[i].text = "";
+            secondaryStatTexts[i].text = "";
         }
 
-        // Assign the item stats' names to the property texts, skipping empty entries
-        for (int i = 0; i < propertyTexts.Length; i++)
+        // Assign the primary stat name
+        string newText = StatTextFormatter.FormatStatText(item.ItemPrimaryStat);
+        primaryStatText.text = newText;
+
+        // Assign the secondary stats' names, skipping empty entries
+        for (int i = 0; i < secondaryStatTexts.Length; i++)
         {
             if (i < item.ItemSecondaryStats.Length)
             {
-                string newText = StatTextFormatter.FormatStatText(item.ItemSecondaryStats[i]);
+                newText = StatTextFormatter.FormatStatText(item.ItemSecondaryStats[i]);
 
                 if (newText != "")
                 {
-                    propertyTexts[propertyTextIndex].text = newText;
-                    propertyTextIndex++;
+                    secondaryStatTexts[statTextIndex].text = newText;
+                    statTextIndex++;
                 }
             }
         }
@@ -62,10 +68,11 @@ public class ItemViewer : MonoBehaviour, IItemView
         descriptionText.text = "";
         quantityText.text = "";
         qualityText.text = "";
+        primaryStatText.text = "";
 
-        for (int i = 0; i < propertyTexts.Length; i++)
+        for (int i = 0; i < secondaryStatTexts.Length; i++)
         {
-            propertyTexts[i].text = "";
+            secondaryStatTexts[i].text = "";
         }
     }
 }

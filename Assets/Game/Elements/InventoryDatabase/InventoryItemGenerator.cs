@@ -106,8 +106,8 @@ public static class InventoryItemGenerator
             primaryStat = new(primaryStatID, primaryStatValue);
         }
 
-        // Generate secondary stats based on quality 
-        int secondaryStatAmountLimit = itemQuality > 1 ? itemQuality - 1 : 1;
+        // Generate secondary stats for qualities above lowest 
+        int secondaryStatAmountLimit = itemQuality > 1 ? itemQuality - 1 : 0;
         List<InventoryItemStat> secondaryStats = new();
         for (int i = 0; i < secondaryStatAmountLimit; i++)
         {

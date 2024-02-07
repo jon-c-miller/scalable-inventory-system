@@ -63,10 +63,15 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
 
     public void ISelectPreviousEntry(IItemView itemView)
     {
-        // Navigate to previous if not at the top already
         if (selectedEntryIndex > 0)
         {
+            // Navigate to previous if not at the top already
             Navigate(true);
+        }
+        else if (selectedEntryIndex == 0)
+        {
+            // Ensure that the first entry can always be selected
+            entries[selectedEntryIndex].UpdateTextColor(selectedColor);
         }
         else if (displayFromInventoryIndex > 0)
         {
@@ -132,6 +137,10 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             entries[currentEntryIndex].SetEntryText(entryName, entryQuantity);
             currentEntryIndex++;
         }
+
+        // Automatically highlight the current entry and display the item view
+        Game.Instance.InventoryNavigatePrevious();
+        Game.Instance.InventoryUpdateItemView(inventoryBeingDisplayed[selectedEntryIndex]);
     }
 
     void Navigate(bool isPrevious)

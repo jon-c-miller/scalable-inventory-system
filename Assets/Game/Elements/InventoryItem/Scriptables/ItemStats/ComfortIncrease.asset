@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Comfort
   Description: You feel more at ease.
-  ID: 4
-  Value: 1
+  ID: 5
+  Modifier: 1
   Variance: 4

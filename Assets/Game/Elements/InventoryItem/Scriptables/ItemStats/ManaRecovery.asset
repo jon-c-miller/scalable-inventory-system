@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Mana Recovery
   Description: You recover some mana.
-  ID: 6
-  Value: 1
+  ID: 7
+  Modifier: 1
   Variance: 0

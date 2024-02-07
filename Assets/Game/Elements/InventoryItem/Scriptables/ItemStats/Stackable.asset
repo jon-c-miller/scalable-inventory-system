@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   Description: 
-  ID: 0
-  BaseValue: 0
-  LevelModifier: 0
+  ID: 1
+  Modifier: 1
   Variance: 0

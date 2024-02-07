@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Damage
   Description: Your attacks are more effective.
-  ID: 3
-  Value: 5
+  ID: 4
+  Modifier: 1
   Variance: 0

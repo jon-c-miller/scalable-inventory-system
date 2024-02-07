@@ -17,11 +17,9 @@ MonoBehaviour:
     in culinary delight.
   ID: 4
   Type: 2
-  CoreStats:
-  - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
-  - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
-  OptionalStats:
-  - {fileID: 11400000, guid: e5f80b2279752ae42950a083a52629c3, type: 2}
+  PrimaryStat: 6
+  DefiningStats: 01000000
+  AssignableStats: 07000000
   MaxQuality: 2
   MaxDropAmount: 2
   UnlockLevel: 1

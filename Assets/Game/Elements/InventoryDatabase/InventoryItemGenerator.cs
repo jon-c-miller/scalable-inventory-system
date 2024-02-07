@@ -97,10 +97,14 @@ public static class InventoryItemGenerator
             itemQuality = itemMaxQuality;
 
         // Assign value to primary stat based on that stat's modifier/variance and item level
+        InventoryItemStat primaryStat = new();
         ItemStatIDs primaryStatID = itemTemplate.PrimaryStat;
-        SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
-        int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, 0, itemQuality);
-        InventoryItemStat primaryStat = new(primaryStatID, primaryStatValue);
+        if (primaryStatID != ItemStatIDs.None)
+        {
+            SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
+            int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, 0, itemQuality);
+            primaryStat = new(primaryStatID, primaryStatValue);
+        }
 
         // Generate secondary stats based on quality 
         int secondaryStatAmountLimit = itemQuality > 1 ? itemQuality - 1 : 1;

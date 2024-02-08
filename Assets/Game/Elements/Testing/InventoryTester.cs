@@ -24,7 +24,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [SerializeField] int desiredRandomizeAmount = 12;
     [SerializeField] bool randomizeLevel;
     [Space]
-    [SerializeField] InventoryItem lastGeneratedItem;
+    [SerializeField] InventoryItem lastGeneratedItem = new();
 
     void Update()
     {

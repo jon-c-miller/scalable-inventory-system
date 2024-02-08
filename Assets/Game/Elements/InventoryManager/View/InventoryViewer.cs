@@ -68,11 +68,6 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             // Navigate to previous if not at the top already
             Navigate(true);
         }
-        else if (selectedEntryIndex == 0)
-        {
-            // Ensure that the first entry can always be selected
-            entries[selectedEntryIndex].UpdateTextColor(selectedColor);
-        }
         else if (displayFromInventoryIndex > 0)
         {
             // Otherwise decrease the display from index if still displaying a subset of inventory starting above index 0
@@ -139,8 +134,8 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
         }
 
         // Automatically highlight the current entry and display the item view
-        Game.Instance.InventoryNavigatePrevious();
-        Game.Instance.InventoryUpdateItemView(inventoryBeingDisplayed[selectedEntryIndex]);
+        entries[selectedEntryIndex].UpdateTextColor(selectedColor);
+        Game.Instance.InventoryUpdateItemView(inventoryBeingDisplayed[ISelectedInventoryItemIndex]);
     }
 
     void Navigate(bool isPrevious)

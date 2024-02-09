@@ -58,13 +58,13 @@ public class InventoryManager
     public void RemoveItemAtIndex()
     {
         int index = inventoryView.ISelectedInventoryItemIndex;
-        InventoryRemove.RemoveAtIndex(currentInventory, index);
+        InventoryRemove.RemoveAtIndex(currentInventory, index, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
     public void RemoveItemByType(ItemIDs itemTypeToRemove)
     {
-        InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove);
+        InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 

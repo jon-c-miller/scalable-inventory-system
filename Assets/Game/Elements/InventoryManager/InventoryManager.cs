@@ -13,6 +13,8 @@ public class InventoryManager
     [SerializeField] int itemAmountLimit = 12;
     [SerializeField] int itemStackMax = 5;
     [SerializeField] bool enableMultipleStacks;
+    [Space]
+    [SerializeField] bool enableLogs;
 
     IInventoryView inventoryView;
     IItemView itemView;
@@ -49,7 +51,7 @@ public class InventoryManager
 
     public void AddItem(InventoryItem itemToAdd)
     {
-        InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks);
+        InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 

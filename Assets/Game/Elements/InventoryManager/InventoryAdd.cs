@@ -91,6 +91,7 @@ public static class InventoryAdd
         }
 
         if (enableLogs) UnityEngine.Debug.LogWarning($"Try add to the first empty spot if available...");
+        // Replace an empty spot with item to be added if possible instead of appending it to the end
         for (int i = 0; i < currentInventory.Count; i++)
         {
             if (currentInventory[i].ItemID == ItemIDs.None)

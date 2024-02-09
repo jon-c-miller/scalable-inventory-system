@@ -11,6 +11,7 @@ public struct InventoryItem
     [SerializeField] ItemQualityIDs quality;                // Determines stat count based on ItemQualityIDs value
     [SerializeField] InventoryItemStat primaryStat;         // Primary stat that defines this item's focus (damage, armor, etc.)
     [SerializeField] InventoryItemStat[] secondaryStats;    // All secondary generated stats
+    [SerializeField] int level;
     [SerializeField] int quantity;
     [SerializeField] bool isStackable;
 
@@ -21,6 +22,7 @@ public struct InventoryItem
     public readonly InventoryItemStat ItemPrimaryStat => primaryStat;
     public readonly InventoryItemStat[] ItemSecondaryStats => secondaryStats;
     public int ItemQuantity { readonly get => quantity; set => quantity = value; }
+    public readonly int ItemLevel => level;
     public readonly bool IsStackable => isStackable;
 
     public readonly InventoryItem CopyItem()
@@ -28,23 +30,24 @@ public struct InventoryItem
         // Copy the current stats array to the new copy
         InventoryItemStat[] copyOfSecondaryStats = new InventoryItemStat[secondaryStats.Length];
         secondaryStats.CopyTo(copyOfSecondaryStats, 0); 
-        return new(id, type, quality, primaryStat, copyOfSecondaryStats, isStackable, quantity);
+        return new(id, type, quality, primaryStat, copyOfSecondaryStats, isStackable, level, quantity);
     }
 
     public readonly InventoryItem CopyItem(int newQuantity)
     {
         InventoryItemStat[] copyOfSecondaryStats = new InventoryItemStat[secondaryStats.Length];
         secondaryStats.CopyTo(copyOfSecondaryStats, 0);
-        return new(id, type, quality, primaryStat, copyOfSecondaryStats, isStackable, newQuantity);
+        return new(id, type, quality, primaryStat, copyOfSecondaryStats, isStackable, level, newQuantity);
     }
 
-    public InventoryItem(ItemIDs id, ItemTypes type, ItemQualityIDs quality, InventoryItemStat primaryStat, InventoryItemStat[] secondaryStats, bool isStackable, int quantity)
+    public InventoryItem(ItemIDs id, ItemTypes type, ItemQualityIDs quality, InventoryItemStat primaryStat, InventoryItemStat[] secondaryStats, bool isStackable, int level, int quantity)
     {
         this.id = id;
         this.type = type;
         this.quality = quality;
         this.primaryStat = primaryStat;
         this.secondaryStats = secondaryStats;
+        this.level = level;
         this.quantity = quantity;
         this.isStackable = isStackable;
 

@@ -65,7 +65,7 @@ public static class InventoryItemGenerator
         if (isStackable)
             quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
 
-        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, quantity);
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, level, quantity);
     }
 
     static int GenerateStatValue(float statModifier, float statVariance, int itemLevel, int quality)
@@ -84,7 +84,7 @@ public static class InventoryItemGenerator
         return (int)varianceAdjustedValue;
     }
 
-    public static InventoryItem CreateItemOfSpecificTypeAndQuality(ItemIDs type, ItemQualityIDs quality)
+    public static InventoryItem CreateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level)
     {
         SInventoryItem itemTemplate = InventoryDatabase.ItemDatabase[type];
 
@@ -129,6 +129,6 @@ public static class InventoryItemGenerator
         if (isStackable)
             quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
 
-        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, quantity);
+        return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, level, quantity);
     }
 }

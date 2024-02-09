@@ -19,6 +19,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemIDs desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
+    [SerializeField] int desiredItemLevel;
     [SerializeField, Range(1, 20)] int currentUnlockLevel;
     [Space]
     [SerializeField] int desiredRandomizeAmount = 12;
@@ -30,7 +31,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     {
         if (Input.GetKeyDown(createDesiredItemKey))
         {
-            lastGeneratedItem = InventoryItemGenerator.CreateItemOfSpecificTypeAndQuality(desiredItemType, desiredItemQuality);
+            lastGeneratedItem = InventoryItemGenerator.CreateSpecificItem(desiredItemType, desiredItemQuality, desiredItemLevel);
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {

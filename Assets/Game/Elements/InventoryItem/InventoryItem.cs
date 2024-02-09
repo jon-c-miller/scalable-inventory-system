@@ -21,8 +21,8 @@ public struct InventoryItem
     public readonly ItemQualityIDs ItemQuality => quality;
     public readonly InventoryItemStat ItemPrimaryStat => primaryStat;
     public readonly InventoryItemStat[] ItemSecondaryStats => secondaryStats;
-    public int ItemQuantity { readonly get => quantity; set => quantity = value; }
     public readonly int ItemLevel => level;
+    public readonly int ItemQuantity => quantity;
     public readonly bool IsStackable => isStackable;
 
     public readonly InventoryItem CopyItem()

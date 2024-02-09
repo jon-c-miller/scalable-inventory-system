@@ -19,7 +19,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     [Header("Test Parameters")]
     [SerializeField] ItemIDs desiredItemType;
     [SerializeField] ItemQualityIDs desiredItemQuality;
-    [SerializeField, Range(1, 20)] int itemLevelAvailable;
+    [SerializeField, Range(1, 20)] int currentUnlockLevel;
     [Space]
     [SerializeField] int desiredRandomizeAmount = 12;
     [SerializeField] bool randomizeLevel;
@@ -65,7 +65,7 @@ public class InventoryTesterAlternate : MonoBehaviour
             for (int i = 0; i < desiredRandomizeAmount; i++)
             {
                 // Generate a new item and add it to the inventory
-                int itemLevel = itemLevelAvailable;
+                int itemLevel = currentUnlockLevel;
                 if (randomizeLevel)
                     itemLevel = Random.Range(1, 100);
                 InventoryItem newItem = InventoryItemGenerator.CreateRandomItemAvailableAtLevel(itemLevel);

@@ -31,7 +31,7 @@ public class InventoryTesterAlternate : MonoBehaviour
     {
         if (Input.GetKeyDown(createDesiredItemKey))
         {
-            lastGeneratedItem = InventoryItemGenerator.CreateSpecificItem(desiredItemType, desiredItemQuality, desiredItemLevel);
+            lastGeneratedItem = Game.Instance.InventoryGenerateSpecificItem(desiredItemType, desiredItemQuality, desiredItemLevel);
         }
         else if (Input.GetKeyDown(addItemToInventoryKey))
         {
@@ -69,7 +69,7 @@ public class InventoryTesterAlternate : MonoBehaviour
                 int itemLevel = currentUnlockLevel;
                 if (randomizeLevel)
                     itemLevel = Random.Range(1, 100);
-                InventoryItem newItem = InventoryItemGenerator.CreateRandomItemAvailableAtLevel(itemLevel);
+                InventoryItem newItem = Game.Instance.InventoryGenerateItemAvailableAtLevel(itemLevel);
                 Game.Instance.InventoryAddItem(newItem);
             }
         }

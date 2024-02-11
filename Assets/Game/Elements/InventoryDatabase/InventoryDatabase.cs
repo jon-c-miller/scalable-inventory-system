@@ -23,6 +23,12 @@ public class InventoryDatabase
 
     public SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => statDatabase[id];
 
+    public void Initialize()
+    {
+        BuildItemDatabase();
+        BuildStatDatabase();
+    }
+
     void BuildItemDatabase()
     {
         // Map all scriptable object item templates to their ids for simple retrieval
@@ -39,11 +45,5 @@ public class InventoryDatabase
         {
             statDatabase.Add(statTemplates[i].ID, statTemplates[i]);
         }
-    }
-
-    void Awake()
-    {
-        BuildItemDatabase();
-        BuildStatDatabase();
     }
 }

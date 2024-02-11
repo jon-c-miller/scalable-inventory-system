@@ -26,6 +26,8 @@ public class InventoryManager
         // Get the interface component from inventory and item views (allows for any class to act as a view)
         inventoryViewObject.TryGetComponent(out inventoryView);
         itemViewObject.TryGetComponent(out itemView);
+
+        database?.Initialize();
         
         inventoryView?.IInitialize();
         itemView?.IInitialize();

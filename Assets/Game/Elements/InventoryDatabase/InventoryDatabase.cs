@@ -10,6 +10,18 @@ public class InventoryDatabase : MonoBehaviour
     public static readonly Dictionary<ItemIDs, SInventoryItem> ItemDatabase = new();
     public static readonly Dictionary<ItemStatIDs, SInventoryItemStat> StatDatabase = new();
 
+    public static string GetItemName(ItemIDs id) => ItemDatabase[id].Name;
+
+    public static string GetStatName(ItemStatIDs id) => StatDatabase[id].Name;
+
+    public static string GetItemDescription(ItemIDs id) => ItemDatabase[id].Description;
+
+    public static string GetStatDescription(ItemStatIDs id) => StatDatabase[id].Description;
+
+    public static SInventoryItem GetItemTemplate(ItemIDs id) => ItemDatabase[id];
+
+    public static SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => StatDatabase[id];
+
     void BuildItemDatabase()
     {
         // Map all scriptable object item templates to their ids for simple retrieval

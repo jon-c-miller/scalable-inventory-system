@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Mana Recovery
   Description: You recover some mana.
   ID: 7
-  Modifier: 1
+  Modifier: 4
   Variance: 0
+  IsPercentage: 1

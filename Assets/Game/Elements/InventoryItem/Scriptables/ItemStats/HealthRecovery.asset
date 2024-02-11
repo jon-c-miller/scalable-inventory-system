@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Health Recovery
   Description: You recover some health.
   ID: 6
-  Modifier: 1
+  Modifier: 3
   Variance: 0
+  IsPercentage: 1

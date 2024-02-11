@@ -40,7 +40,7 @@ public static class InventoryItemGenerator
         {
             SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
             int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, level, itemQuality);
-            primaryStat = new(primaryStatID, primaryStatValue);
+            primaryStat = new(primaryStatID, primaryStatValue, primaryStatTemplate.IsPercentage);
         }
 
         // Generate secondary stats based on quality 
@@ -56,7 +56,7 @@ public static class InventoryItemGenerator
             int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, level, itemQuality);
 
             // Add to stats collection
-            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
+            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue, statTemplate.IsPercentage));
         }
 
         // Handle quantity
@@ -103,7 +103,7 @@ public static class InventoryItemGenerator
         {
             SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
             int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, 0, itemQuality);
-            primaryStat = new(primaryStatID, primaryStatValue);
+            primaryStat = new(primaryStatID, primaryStatValue, primaryStatTemplate.IsPercentage);
         }
 
         // Generate secondary stats for qualities above lowest 
@@ -120,7 +120,7 @@ public static class InventoryItemGenerator
             int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, 0, itemQuality);
 
             // Add to stats collection
-            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue));
+            secondaryStats.Add(new InventoryItemStat(statTemplate.ID, statValue, statTemplate.IsPercentage));
         }
 
         // Handle quantity

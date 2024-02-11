@@ -9,6 +9,7 @@ public class SInventoryItemStat : ScriptableObject
     [Space]
     [Range(0.01f, 300f)] public float Modifier = 1;
     [Range(0, 100f)] public float Variance;
+    public bool IsPercentage;
 }
 
 public enum ItemStatIDs

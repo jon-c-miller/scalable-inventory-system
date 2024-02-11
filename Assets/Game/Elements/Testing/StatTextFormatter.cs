@@ -35,22 +35,22 @@ public static class StatTextFormatter
         switch (itemStat.Type)
         {
             case ItemStatIDs.EffectRange:
-                return $"{InventoryDatabase.GetStatName(itemStat.Type)} {itemStat.Value}";
+                return $"{Game.Instance.InventoryGetItemStatName(itemStat.Type)} {itemStat.Value}";
 
             case ItemStatIDs.ManaIncrease:
-                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {Game.Instance.InventoryGetItemStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.DamageIncrease:
-                return $"<color=red>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
+                return $"<color=red>+{itemStat.Value}{addendum} {Game.Instance.InventoryGetItemStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.ComfortIncrease:
-                return $"<color=teal>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
+                return $"<color=teal>+{itemStat.Value}{addendum} {Game.Instance.InventoryGetItemStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.Healing:
-                return $"<color=pink>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
+                return $"<color=pink>+{itemStat.Value}{addendum} {Game.Instance.InventoryGetItemStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.ManaRecovery:
-                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {Game.Instance.InventoryGetItemStatName(itemStat.Type)}</color>";
         }
         return "";
     }

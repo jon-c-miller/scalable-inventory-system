@@ -3,7 +3,7 @@ public static class StatTextFormatter
 {
     public static string FormatNameText(InventoryItem item, bool colorBasedOnQuality)
     {
-        string name = InventoryDatabase.ItemDatabase[item.ItemID].Name;
+        string name = InventoryDatabase.GetItemName(item.ItemID);
 
         if (colorBasedOnQuality)
         {
@@ -35,22 +35,22 @@ public static class StatTextFormatter
         switch (itemStat.Type)
         {
             case ItemStatIDs.EffectRange:
-                return $"{InventoryDatabase.StatDatabase[itemStat.Type].Name} {itemStat.Value}";
+                return $"{InventoryDatabase.GetStatName(itemStat.Type)} {itemStat.Value}";
 
             case ItemStatIDs.ManaIncrease:
-                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.DamageIncrease:
-                return $"<color=red>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
+                return $"<color=red>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.ComfortIncrease:
-                return $"<color=teal>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
+                return $"<color=teal>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.Healing:
-                return $"<color=pink>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
+                return $"<color=pink>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
 
             case ItemStatIDs.ManaRecovery:
-                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.GetStatName(itemStat.Type)}</color>";
         }
         return "";
     }

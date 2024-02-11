@@ -179,7 +179,7 @@ MonoBehaviour:
   desiredItemType: 1
   desiredItemQuality: 2
   desiredItemLevel: 0
-  currentUnlockLevel: 0
+  currentUnlockLevel: 4
   desiredRandomizeAmount: 12
   randomizeLevel: 0
   lastGeneratedItem:

@@ -134,7 +134,7 @@ MonoBehaviour:
   - {fileID: 6410141986245804130}
   - {fileID: 7474782646227279709}
   - {fileID: 1926336836328214931}
-  concurrentEntriesToDisplay: 5
+  concurrentEntriesToDisplay: 6
   skipEmptyEntries: 0
   selectedColor: {r: 1, g: 0, b: 1, a: 1}
   unselectedColor: {r: 1, g: 0.5019608, b: 0, a: 1}

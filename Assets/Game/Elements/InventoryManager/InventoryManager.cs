@@ -22,6 +22,7 @@ public class InventoryManager
     IItemView itemView;
 
     InventoryAdd inventoryAdd = new();
+    InventoryCompact inventoryCompact = new();
 
 
     public void Initialize()
@@ -94,7 +95,7 @@ public class InventoryManager
 
     public void CompactItems()
     {
-        InventoryCompact.CompactItems(currentInventory, out currentInventory);
+        inventoryCompact.CompactItems(currentInventory, out currentInventory);
         inventoryView.ISetCurrentInventory(GetInventory(), true);
     }
 

@@ -43,7 +43,7 @@ public static class InventoryRemove
             if (currentInventory[i].ItemID == itemTypeToRemove)
             {
                 // Handle cases where the item to be removed is stackable
-                if (InventoryDatabase.GetItemTemplate(itemTypeToRemove).CheckForDefiningStat(ItemStatIDs.Stackable))
+                if (Game.Instance.InventoryGetItemTemplate(itemTypeToRemove).CheckForDefiningStat(ItemStatIDs.Stackable))
                 {
                     int currentQuantity = currentInventory[i].ItemQuantity;
 

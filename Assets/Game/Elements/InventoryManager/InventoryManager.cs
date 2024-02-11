@@ -21,6 +21,9 @@ public class InventoryManager
     IInventoryView inventoryView;
     IItemView itemView;
 
+    InventoryAdd inventoryAdd = new();
+
+
     public void Initialize()
     {
         // Get the interface component from inventory and item views (allows for any class to act as a view)
@@ -72,7 +75,7 @@ public class InventoryManager
 
     public void AddItem(InventoryItem itemToAdd)
     {
-        InventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks, enableLogs);
+        inventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 

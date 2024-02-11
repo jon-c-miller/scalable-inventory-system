@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
 /// <summary> An extension of InventoryManager that handles parsing an inventory to add a given item. </summary>
-public static class InventoryAdd
+public class InventoryAdd
 {
-    public static void AddItem(List<InventoryItem> currentInventory, InventoryItem itemToAdd, int itemStackMax, int inventoryAmountLimit, bool enableMultipleStacks, bool enableLogs)
+    public void AddItem(List<InventoryItem> currentInventory, InventoryItem itemToAdd, int itemStackMax, int inventoryAmountLimit, bool enableMultipleStacks, bool enableLogs)
     {
         // Loop to update stacking items
         if (itemToAdd.IsStackable)
@@ -73,7 +73,7 @@ public static class InventoryAdd
         TryAddToFirstEmptySpot(currentInventory, itemToAdd, inventoryAmountLimit, enableLogs);
     }
 
-    static void TryAddToFirstEmptySpot(List<InventoryItem> currentInventory, InventoryItem newItem, int inventoryAmountLimit, bool enableLogs)
+    void TryAddToFirstEmptySpot(List<InventoryItem> currentInventory, InventoryItem newItem, int inventoryAmountLimit, bool enableLogs)
     {
         // Get an actual item count by skipping empty entries
         int actualItemCount = 0;

@@ -29,27 +29,28 @@ public static class StatTextFormatter
         else return $"<color=purple>{quality}</color>";
     }
 
-    public static string FormatStatText(InventoryItemStat statType)
+    public static string FormatStatText(InventoryItemStat itemStat)
     {
-        switch (statType.Type)
+        string addendum = itemStat.IsPercentage ? "%" : "";
+        switch (itemStat.Type)
         {
             case ItemStatIDs.EffectRange:
-                return $"{InventoryDatabase.StatDatabase[statType.Type].Name} {statType.Value}";
+                return $"{InventoryDatabase.StatDatabase[itemStat.Type].Name} {itemStat.Value}";
 
             case ItemStatIDs.ManaIncrease:
-                return $"<color=lightblue>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
 
             case ItemStatIDs.DamageIncrease:
-                return $"<color=red>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+                return $"<color=red>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
 
             case ItemStatIDs.ComfortIncrease:
-                return $"<color=teal>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+                return $"<color=teal>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
 
             case ItemStatIDs.Healing:
-                return $"<color=pink>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+                return $"<color=pink>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
 
             case ItemStatIDs.ManaRecovery:
-                return $"<color=lightblue>+{statType.Value}% {InventoryDatabase.StatDatabase[statType.Type].Name}</color>";
+                return $"<color=lightblue>+{itemStat.Value}{addendum} {InventoryDatabase.StatDatabase[itemStat.Type].Name}</color>";
         }
         return "";
     }

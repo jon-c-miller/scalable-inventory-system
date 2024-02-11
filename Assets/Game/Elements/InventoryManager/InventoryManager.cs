@@ -29,6 +29,23 @@ public class InventoryManager
         itemView?.IInitialize();
     }
 
+    // Database Accessors
+
+    public string GetItemName(ItemIDs id) => InventoryDatabase.GetItemName(id);
+
+    public string GetStatName(ItemStatIDs id) => InventoryDatabase.GetStatName(id);
+
+    public string GetItemDescription(ItemIDs id) => InventoryDatabase.GetItemDescription(id);
+
+    public string GetStatDescription(ItemStatIDs id) => InventoryDatabase.GetStatDescription(id);
+
+    public SInventoryItem GetItemTemplate(ItemIDs id) => InventoryDatabase.GetItemTemplate(id);
+
+    public SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => InventoryDatabase.GetItemStatTemplate(id);
+
+
+    // Inventory Accessors
+
     public InventoryItem[] GetInventory()
     {
         InventoryItem[] fullInventory = new InventoryItem[currentInventory.Count];

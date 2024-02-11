@@ -2,32 +2,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Stores maps of item and stat types to matching scriptable objects for item and item stat template retrieval. </summary>
-public class InventoryDatabase : MonoBehaviour
+public class InventoryDatabase
 {
     [SerializeField] SInventoryItem[] itemTemplates;
     [SerializeField] SInventoryItemStat[] statTemplates;
     
-    public static readonly Dictionary<ItemIDs, SInventoryItem> ItemDatabase = new();
-    public static readonly Dictionary<ItemStatIDs, SInventoryItemStat> StatDatabase = new();
+    readonly Dictionary<ItemIDs, SInventoryItem> itemDatabase = new();
+    readonly Dictionary<ItemStatIDs, SInventoryItemStat> statDatabase = new();
 
-    public static string GetItemName(ItemIDs id) => ItemDatabase[id].Name;
+    public string GetItemName(ItemIDs id) => itemDatabase[id].Name;
 
-    public static string GetStatName(ItemStatIDs id) => StatDatabase[id].Name;
+    public string GetStatName(ItemStatIDs id) => statDatabase[id].Name;
 
-    public static string GetItemDescription(ItemIDs id) => ItemDatabase[id].Description;
+    public string GetItemDescription(ItemIDs id) => itemDatabase[id].Description;
 
-    public static string GetStatDescription(ItemStatIDs id) => StatDatabase[id].Description;
+    public string GetStatDescription(ItemStatIDs id) => statDatabase[id].Description;
 
-    public static SInventoryItem GetItemTemplate(ItemIDs id) => ItemDatabase[id];
+    public SInventoryItem GetItemTemplate(ItemIDs id) => itemDatabase[id];
 
-    public static SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => StatDatabase[id];
+    public SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => statDatabase[id];
 
     void BuildItemDatabase()
     {
         // Map all scriptable object item templates to their ids for simple retrieval
         for (int i = 0; i < itemTemplates.Length; i++)
         {
-            ItemDatabase.Add(itemTemplates[i].ID, itemTemplates[i]);
+            itemDatabase.Add(itemTemplates[i].ID, itemTemplates[i]);
         }
     }
 
@@ -36,7 +36,7 @@ public class InventoryDatabase : MonoBehaviour
         // Map all scriptable object item stat templates to their types for simple retrieval by stat id
         for (int i = 0; i < statTemplates.Length; i++)
         {
-            StatDatabase.Add(statTemplates[i].ID, statTemplates[i]);
+            statDatabase.Add(statTemplates[i].ID, statTemplates[i]);
         }
     }
 

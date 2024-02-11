@@ -19,6 +19,8 @@ public class InventoryManager
     IInventoryView inventoryView;
     IItemView itemView;
 
+    InventoryDatabase database = new();
+
     public void Initialize()
     {
         // Get the interface component from inventory and item views (allows for any class to act as a view)
@@ -31,17 +33,17 @@ public class InventoryManager
 
     // Database Accessors
 
-    public string GetItemName(ItemIDs id) => InventoryDatabase.GetItemName(id);
+    public string GetItemName(ItemIDs id) => database.GetItemName(id);
 
-    public string GetStatName(ItemStatIDs id) => InventoryDatabase.GetStatName(id);
+    public string GetStatName(ItemStatIDs id) => database.GetStatName(id);
 
-    public string GetItemDescription(ItemIDs id) => InventoryDatabase.GetItemDescription(id);
+    public string GetItemDescription(ItemIDs id) => database.GetItemDescription(id);
 
-    public string GetStatDescription(ItemStatIDs id) => InventoryDatabase.GetStatDescription(id);
+    public string GetStatDescription(ItemStatIDs id) => database.GetStatDescription(id);
 
-    public SInventoryItem GetItemTemplate(ItemIDs id) => InventoryDatabase.GetItemTemplate(id);
+    public SInventoryItem GetItemTemplate(ItemIDs id) => database.GetItemTemplate(id);
 
-    public SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => InventoryDatabase.GetItemStatTemplate(id);
+    public SInventoryItemStat GetItemStatTemplate(ItemStatIDs id) => database.GetItemStatTemplate(id);
 
 
     // Inventory Accessors

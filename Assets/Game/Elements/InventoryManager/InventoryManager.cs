@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryManager
 {
+    [SerializeField] InventoryDatabase database = new();
+    [Space]
     [SerializeField] GameObject inventoryViewObject;
     [SerializeField] GameObject itemViewObject;
     [Space]
@@ -18,8 +20,6 @@ public class InventoryManager
 
     IInventoryView inventoryView;
     IItemView itemView;
-
-    InventoryDatabase database = new();
 
     public void Initialize()
     {

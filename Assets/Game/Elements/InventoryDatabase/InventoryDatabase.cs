@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> Stores maps of item and stat types to matching scriptable objects for item and item stat template retrieval. </summary>
+[System.Serializable]
 public class InventoryDatabase
 {
     [SerializeField] SInventoryItem[] itemTemplates;

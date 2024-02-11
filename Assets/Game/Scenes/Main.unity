@@ -123,62 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &402776090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 402776091}
-  - component: {fileID: 402776092}
-  m_Layer: 0
-  m_Name: Database
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &402776091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402776090}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1697599575}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &402776092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402776090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a045fdb302989744a96654ccd5ce9c54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemTemplates:
-  - {fileID: 11400000, guid: 7ec81e5058f22e649a4c5a82a675f843, type: 2}
-  - {fileID: 11400000, guid: 3627087ad126878418eefac48c602863, type: 2}
-  - {fileID: 11400000, guid: 15b2da14c32e1c14e86a3bfffc168b65, type: 2}
-  - {fileID: 11400000, guid: 179314c02b4190241a1c96b3e18b386c, type: 2}
-  statTemplates:
-  - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
-  - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
-  - {fileID: 11400000, guid: 79d8e5679d065584aa4ebdf27360af93, type: 2}
-  - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
-  - {fileID: 11400000, guid: e5f80b2279752ae42950a083a52629c3, type: 2}
-  - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
 --- !u!1 &643846992
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +178,8 @@ MonoBehaviour:
   selectNextEntryKey: 115
   desiredItemType: 1
   desiredItemQuality: 2
-  itemLevelAvailable: 3
+  desiredItemLevel: 0
+  currentUnlockLevel: 0
   desiredRandomizeAmount: 12
   randomizeLevel: 0
   lastGeneratedItem:
@@ -245,7 +190,9 @@ MonoBehaviour:
     primaryStat:
       statID: 0
       statValue: 0
+      isPercentage: 0
     secondaryStats: []
+    level: 0
     quantity: 0
     isStackable: 0
 --- !u!1 &1120150105 stripped
@@ -381,6 +328,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements:
     inventoryManager:
+      database:
+        itemTemplates:
+        - {fileID: 11400000, guid: 15b2da14c32e1c14e86a3bfffc168b65, type: 2}
+        - {fileID: 11400000, guid: 7ec81e5058f22e649a4c5a82a675f843, type: 2}
+        - {fileID: 11400000, guid: 3627087ad126878418eefac48c602863, type: 2}
+        - {fileID: 11400000, guid: 179314c02b4190241a1c96b3e18b386c, type: 2}
+        statTemplates:
+        - {fileID: 11400000, guid: 79d8e5679d065584aa4ebdf27360af93, type: 2}
+        - {fileID: 11400000, guid: 0c03ae69a2e41764599e1f978d89444b, type: 2}
+        - {fileID: 11400000, guid: bf5654a6d1ea6444d8d30d770f6a88ce, type: 2}
+        - {fileID: 11400000, guid: e5f80b2279752ae42950a083a52629c3, type: 2}
+        - {fileID: 11400000, guid: dc914682a9240b641ba6dd049d7d025e, type: 2}
+        - {fileID: 11400000, guid: 09c4649b05cd8644e8e68ce958a797c9, type: 2}
       inventoryViewObject: {fileID: 1120150105}
       itemViewObject: {fileID: 2837407721727958136}
       currentInventory:
@@ -391,12 +351,15 @@ MonoBehaviour:
         primaryStat:
           statID: 0
           statValue: 0
+          isPercentage: 0
         secondaryStats: []
+        level: 0
         quantity: 0
         isStackable: 0
       itemAmountLimit: 12
       itemStackMax: 5
       enableMultipleStacks: 0
+      enableLogs: 0
 --- !u!4 &1290770926
 Transform:
   m_ObjectHideFlags: 0
@@ -443,7 +406,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 402776091}
   - {fileID: 1120150106}
   - {fileID: 3797276144491579188}
   m_Father: {fileID: 1290770926}

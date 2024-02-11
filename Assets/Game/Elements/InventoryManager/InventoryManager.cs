@@ -23,6 +23,7 @@ public class InventoryManager
 
     InventoryAdd inventoryAdd = new();
     InventoryCompact inventoryCompact = new();
+    InventoryRemove inventoryRemove = new();
 
 
     public void Initialize()
@@ -83,13 +84,13 @@ public class InventoryManager
     public void RemoveItemAtIndex()
     {
         int index = inventoryView.ISelectedInventoryItemIndex;
-        InventoryRemove.RemoveAtIndex(currentInventory, index, enableLogs);
+        inventoryRemove.RemoveAtIndex(currentInventory, index, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 
     public void RemoveItemByType(ItemIDs itemTypeToRemove)
     {
-        InventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove, enableLogs);
+        inventoryRemove.RemoveItemByType(currentInventory, itemTypeToRemove, enableLogs);
         inventoryView.ISetCurrentInventory(GetInventory(), false);
     }
 

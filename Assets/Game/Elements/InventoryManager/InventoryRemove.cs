@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
 /// <summary> An extension of InventoryManager that handles parsing an inventory to remove a given item. </summary>
-public static class InventoryRemove
+public class InventoryRemove
 {
-    public static void RemoveAtIndex(List<InventoryItem> currentInventory, int index, bool enableLogs)
+    public void RemoveAtIndex(List<InventoryItem> currentInventory, int index, bool enableLogs)
     {
         if (currentInventory.Count < index) return;
 
@@ -32,7 +32,7 @@ public static class InventoryRemove
         }
     }
 
-    public static void RemoveItemByType(List<InventoryItem> currentInventory, ItemIDs itemTypeToRemove, bool enableLogs)
+    public void RemoveItemByType(List<InventoryItem> currentInventory, ItemIDs itemTypeToRemove, bool enableLogs)
     {
         if (enableLogs) UnityEngine.Debug.LogWarning($"Loop backwards through the entire inventory ({currentInventory.Count} items) to check for item...");
         // Loop backwards to remove the entry farthest from the start (helps support a compact inventory)

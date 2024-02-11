@@ -3,7 +3,7 @@ public static class StatTextFormatter
 {
     public static string FormatNameText(InventoryItem item, bool colorBasedOnQuality)
     {
-        string name = InventoryDatabase.GetItemName(item.ItemID);
+        string name = Game.Instance.InventoryGetItemName(item.ItemID);
 
         if (colorBasedOnQuality)
         {

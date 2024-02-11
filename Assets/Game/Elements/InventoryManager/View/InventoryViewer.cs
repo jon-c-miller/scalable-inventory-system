@@ -119,7 +119,7 @@ public class InventoryViewer : MonoBehaviour, IInventoryView
             }
 
             // Gather data for name of entry based on the type of item at this index, as well as quantity
-            string entryName = InventoryDatabase.ItemDatabase[inventoryBeingDisplayed[i].ItemID].Name;
+            string entryName = InventoryDatabase.GetItemName(inventoryBeingDisplayed[i].ItemID);
             
             // Only show quantity if the item is stackable
             string entryQuantity = "";

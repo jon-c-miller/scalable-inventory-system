@@ -14,7 +14,7 @@ public static class InventoryItemGenerator
         {
             tries--;
             ItemIDs randomItemType = (ItemIDs)Random.Range(1, itemTypesCount);
-            SInventoryItem template = InventoryDatabase.ItemDatabase[randomItemType];
+            SInventoryItem template = InventoryDatabase.GetItemTemplate(randomItemType);
             if (template.UnlockLevel <= level)
             {
                 itemTemplate = template;
@@ -38,7 +38,7 @@ public static class InventoryItemGenerator
         ItemStatIDs primaryStatID = itemTemplate.PrimaryStat;
         if (primaryStatID != ItemStatIDs.None)
         {
-            SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
+            SInventoryItemStat primaryStatTemplate = InventoryDatabase.GetItemStatTemplate(primaryStatID);
             int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, level, itemQuality);
             primaryStat = new(primaryStatID, primaryStatValue, primaryStatTemplate.IsPercentage);
         }
@@ -52,7 +52,7 @@ public static class InventoryItemGenerator
 
             // Get the stat template from the inventory database based on the ItemStatIDs key
             ItemStatIDs statID = itemTemplate.AssignableStats[i];
-            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
+            SInventoryItemStat statTemplate = InventoryDatabase.GetItemStatTemplate(statID);
             int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, level, itemQuality);
 
             // Add to stats collection
@@ -86,7 +86,7 @@ public static class InventoryItemGenerator
 
     public static InventoryItem CreateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level)
     {
-        SInventoryItem itemTemplate = InventoryDatabase.ItemDatabase[type];
+        SInventoryItem itemTemplate = InventoryDatabase.GetItemTemplate(type);
 
         // Generate stat count based on quality (uses the ItemQualityIDs enum value as the amount of optional stats)
         int itemQuality = (int)quality;
@@ -101,7 +101,7 @@ public static class InventoryItemGenerator
         ItemStatIDs primaryStatID = itemTemplate.PrimaryStat;
         if (primaryStatID != ItemStatIDs.None)
         {
-            SInventoryItemStat primaryStatTemplate = InventoryDatabase.StatDatabase[primaryStatID];
+            SInventoryItemStat primaryStatTemplate = InventoryDatabase.GetItemStatTemplate(primaryStatID);
             int primaryStatValue = GenerateStatValue(primaryStatTemplate.Modifier, primaryStatTemplate.Variance, 0, itemQuality);
             primaryStat = new(primaryStatID, primaryStatValue, primaryStatTemplate.IsPercentage);
         }
@@ -116,7 +116,7 @@ public static class InventoryItemGenerator
 
             // Get the stat template from the inventory database based on the ItemStatIDs key
             ItemStatIDs statID = itemTemplate.AssignableStats[i];
-            SInventoryItemStat statTemplate = InventoryDatabase.StatDatabase[statID];
+            SInventoryItemStat statTemplate = InventoryDatabase.GetItemStatTemplate(statID);
             int statValue = GenerateStatValue(statTemplate.Modifier, statTemplate.Variance, 0, itemQuality);
 
             // Add to stats collection

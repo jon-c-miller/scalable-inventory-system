@@ -25,7 +25,7 @@ public class ItemViewer : MonoBehaviour, IItemView
 
         // Use the item's type to retrieve name and description from the item database
         nameText.text = StatTextFormatter.FormatNameText(item, colorNameBasedOnQuality);
-        descriptionText.text = InventoryDatabase.GetItemDescription(item.ItemID);
+        descriptionText.text = Game.Instance.InventoryGetItemDescription(item.ItemID);
 
         // Keep track of the stat text index to allow flexibility based on stat type
         int statTextIndex = 0;

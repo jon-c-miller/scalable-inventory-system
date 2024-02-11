@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+/// <summary> An extension of InventoryManager that handles parsing an inventory to add a given item. </summary>
 public static class InventoryAdd
 {
     public static void AddItem(List<InventoryItem> currentInventory, InventoryItem itemToAdd, int itemStackMax, int inventoryAmountLimit, bool enableMultipleStacks, bool enableLogs)

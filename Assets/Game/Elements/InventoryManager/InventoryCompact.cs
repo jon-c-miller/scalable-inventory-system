@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+/// <summary> An extension of InventoryManager that handles relocating items to the beginning and condensing free space at the end. </summary>
 public static class InventoryCompact
 {
     public static void CompactItems(List<InventoryItem> currentInventory, out List<InventoryItem> updatedInventory)

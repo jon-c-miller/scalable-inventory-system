@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/// <summary> Represents an item instance; stores identifying info as well as randomly generate properties. </summary>
+/// <summary> Represents an item instance; stores identifying info as well as generated stats and other properties. </summary>
 [System.Serializable]
 public struct InventoryItem
 {

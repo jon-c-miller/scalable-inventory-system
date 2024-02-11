@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+/// <summary> An extension of InventoryManager that handles parsing an inventory to remove a given item. </summary>
 public static class InventoryRemove
 {
     public static void RemoveAtIndex(List<InventoryItem> currentInventory, int index, bool enableLogs)

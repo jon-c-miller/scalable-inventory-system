@@ -1,3 +1,4 @@
+/// <summary> Provides a way to use different types of view implementations to display an inventory. </summary>
 public interface IInventoryView
 {
     int ISelectedInventoryItemIndex { get; }

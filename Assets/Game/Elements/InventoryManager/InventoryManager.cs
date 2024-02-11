@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Manages an inventory and its view. </summary>
+/// <summary> Manages an inventory database, current inventory, and a view for displaying both inventory and item details. </summary>
 [System.Serializable]
 public class InventoryManager
 {

@@ -1,3 +1,4 @@
+/// <summary> Represents a property on an item; stores identifying info as well as generated values. </summary>
 [System.Serializable]
 public struct InventoryItemStat
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/// <summary> Acts as a proxy to test the project's API at runtime. </summary>
+/// <summary> Acts as a proxy to thoroughly test the project's API at runtime. </summary>
 public class InventoryTesterAlternate : MonoBehaviour
 {
     [Header("Keybindings")]

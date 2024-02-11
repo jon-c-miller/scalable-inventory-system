@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Stores maps of item and stat types to matching scriptable objects for item and item stat template retrieval. </summary>
+/// <summary> Stores maps of ids to matching scriptable objects, and provides accessors for template and info retrieval. </summary>
 [System.Serializable]
 public class InventoryDatabase
 {

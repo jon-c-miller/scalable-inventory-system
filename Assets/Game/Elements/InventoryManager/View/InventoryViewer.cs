@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// <summary> An arbitrary implementation of an inventory viewer in list form. Designed to test and illustrate use of the API. </summary>
 [System.Serializable]
 public class InventoryViewer : MonoBehaviour, IInventoryView
 {

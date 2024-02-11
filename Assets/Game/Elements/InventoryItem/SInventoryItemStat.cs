@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// <summary> Represents an item property template, replacing what would otherwise be part of a data model database. </summary>
 [CreateAssetMenu(fileName = "New Inventory Item Stat", menuName = "Inventory Item/Create New Item Stat")]
 public class SInventoryItemStat : ScriptableObject
 {

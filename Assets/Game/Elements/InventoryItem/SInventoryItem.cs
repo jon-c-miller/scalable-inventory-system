@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> Represents an item template, replacing what would otherwise be part of a data model database. </summary>
 [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item/Create New Item")]
 public class SInventoryItem : ScriptableObject
 {

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// <summary> An unmoving canvas element that acts as an item entry in a list-based inventory, displaying the name of the item. </summary>
 public class ItemEntryDisplay : MonoBehaviour
 {
     [SerializeField] UnityEngine.UI.Text nameText;

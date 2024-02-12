@@ -5,18 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryManager
 {
+    [Header("Configuration")]
+    [SerializeField] int itemAmountLimit = 12;
+    [SerializeField] int itemStackMax = 5;
+    [SerializeField] bool enableMultipleStacks;
+    [Space]
+    [SerializeField] bool enableLogs;
+    [Space]
     [SerializeField] InventoryDatabase database = new();
     [Space]
     [SerializeField] GameObject inventoryViewObject;
     [SerializeField] GameObject itemViewObject;
     [Space]
     [SerializeField] List<InventoryItem> currentInventory = new() { new InventoryItem() };
-    [Space]
-    [SerializeField] int itemAmountLimit = 12;
-    [SerializeField] int itemStackMax = 5;
-    [SerializeField] bool enableMultipleStacks;
-    [Space]
-    [SerializeField] bool enableLogs;
 
     IInventoryView inventoryView;
     IItemView itemView;

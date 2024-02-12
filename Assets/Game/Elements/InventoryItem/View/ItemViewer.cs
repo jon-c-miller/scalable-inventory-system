@@ -4,8 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public class ItemViewer : MonoBehaviour, IItemView
 {
+    [Header("Configuration")]
     [SerializeField] bool showQuantity;
     [SerializeField] bool colorNameBasedOnQuality;
+
     [Header("UI Fields")]
     [SerializeField] UnityEngine.UI.Text nameText;
     [SerializeField] UnityEngine.UI.Text descriptionText;

@@ -4,17 +4,20 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryViewer : MonoBehaviour, IInventoryView
 {
-    [SerializeField] RectTransform backgroundPanel;
-    [SerializeField] ItemEntryDisplay[] entries;
+    [Header("Configuration")]
     [SerializeField] int concurrentEntriesToDisplay = 6;
     [SerializeField] bool skipEmptyEntries;
     [Space]
     [SerializeField] Color selectedColor;
     [SerializeField] Color unselectedColor;
-    [Header("Debug")]
+    [Space]
+    [SerializeField] RectTransform backgroundPanel;
+    [SerializeField] ItemEntryDisplay[] entries;
+    [Space]
     [SerializeField] InventoryItem[] inventoryBeingDisplayed;
-    [SerializeField] int displayFromInventoryIndex;
-    [SerializeField] int selectedEntryIndex;
+
+    int displayFromInventoryIndex;
+    int selectedEntryIndex;
 
     public IInventoryView Interface => this;
 

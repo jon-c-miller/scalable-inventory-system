@@ -69,7 +69,7 @@ public class InventoryTesterAlternate : MonoBehaviour
                 int itemLevel = currentUnlockLevel;
                 if (randomizeLevel)
                     itemLevel = Random.Range(1, 100);
-                InventoryItem newItem = Game.Instance.InventoryGenerateItemAvailableAtLevel(itemLevel);
+                InventoryItem newItem = Game.Instance.InventoryGenerateRandomItemAvailableAtLevel(itemLevel);
                 Game.Instance.InventoryAddItem(newItem);
             }
         }

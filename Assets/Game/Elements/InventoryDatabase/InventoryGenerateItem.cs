@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> Generates an item with randomized stats based on a given type, quality, and level. </summary>
-public static class InventoryItemGenerator
+/// <summary> An extension of InventoryManager that handles generating either a specific item or one with randomized stats based on a given level. </summary>
+public class InventoryGenerateItem
 {
-    public static InventoryItem CreateRandomItemAvailableAtLevel(int level)
+    public InventoryItem CreateRandomItemAvailableAtLevel(int level)
     {
         // Get a random item type based on the amount of item types and their unlock level, skipping None
         SInventoryItem itemTemplate = null;
@@ -68,23 +68,7 @@ public static class InventoryItemGenerator
         return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, level, quantity);
     }
 
-    static int GenerateStatValue(float statModifier, float statVariance, int itemLevel, int quality)
-    {
-        // Factor in quality, increasing the stat's effectiveness every quality level above 1
-        float qualityAdjustedValue = statModifier;
-        qualityAdjustedValue *= quality;
-
-        // Adjust the value based on level if given level is over 0
-        float levelAdjustedValue = itemLevel > 0 ? qualityAdjustedValue * itemLevel : qualityAdjustedValue;
-
-        // Add variance based on quality
-        float generatedVariance = Random.Range(0, statVariance);
-        float varianceAdjustedValue = levelAdjustedValue + (generatedVariance * quality);
-
-        return (int)varianceAdjustedValue;
-    }
-
-    public static InventoryItem CreateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level)
+    public InventoryItem CreateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level)
     {
         SInventoryItem itemTemplate = Game.Instance.InventoryGetItemTemplate(type);
 
@@ -130,5 +114,21 @@ public static class InventoryItemGenerator
             quantity = Random.Range(1, itemTemplate.MaxDropAmount + 1);
 
         return new InventoryItem(itemTemplate.ID, itemTemplate.Type, (ItemQualityIDs)itemQuality, primaryStat, secondaryStats.ToArray(), isStackable, level, quantity);
+    }
+
+    int GenerateStatValue(float statModifier, float statVariance, int itemLevel, int quality)
+    {
+        // Factor in quality, increasing the stat's effectiveness every quality level above 1
+        float qualityAdjustedValue = statModifier;
+        qualityAdjustedValue *= quality;
+
+        // Adjust the value based on level if given level is over 0
+        float levelAdjustedValue = itemLevel > 0 ? qualityAdjustedValue * itemLevel : qualityAdjustedValue;
+
+        // Add variance based on quality
+        float generatedVariance = Random.Range(0, statVariance);
+        float varianceAdjustedValue = levelAdjustedValue + (generatedVariance * quality);
+
+        return (int)varianceAdjustedValue;
     }
 }

@@ -21,10 +21,11 @@ public class InventoryManager
     IInventoryView inventoryView;
     IItemView itemView;
 
+    // Extensions
     InventoryAdd inventoryAdd = new();
     InventoryCompact inventoryCompact = new();
     InventoryRemove inventoryRemove = new();
-
+    InventoryGenerateItem inventoryGenerateItem = new();
 
     public void Initialize()
     {
@@ -75,9 +76,9 @@ public class InventoryManager
 
     public InventoryItem GetItemAtIndex(int index) => currentInventory.Count >= index ? currentInventory[index] : new();
 
-    public InventoryItem GenerateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level) => InventoryItemGenerator.CreateSpecificItem(type, quality, level);
+    public InventoryItem GenerateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level) => inventoryGenerateItem.CreateSpecificItem(type, quality, level);
 
-    public InventoryItem GenerateRandomItemAvailableAtLevel(int level) => InventoryItemGenerator.CreateRandomItemAvailableAtLevel(level);
+    public InventoryItem GenerateRandomItemAvailableAtLevel(int level) => inventoryGenerateItem.CreateRandomItemAvailableAtLevel(level);
 
     public void AddItem(InventoryItem itemToAdd)
     {

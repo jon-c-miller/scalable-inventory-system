@@ -75,6 +75,10 @@ public class InventoryManager
 
     public InventoryItem GetItemAtIndex(int index) => currentInventory.Count >= index ? currentInventory[index] : new();
 
+    public InventoryItem GenerateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level) => InventoryItemGenerator.CreateSpecificItem(type, quality, level);
+
+    public InventoryItem GenerateRandomItemAvailableAtLevel(int level) => InventoryItemGenerator.CreateRandomItemAvailableAtLevel(level);
+
     public void AddItem(InventoryItem itemToAdd)
     {
         inventoryAdd.AddItem(currentInventory, itemToAdd, itemStackMax, itemAmountLimit, enableMultipleStacks, enableLogs);

@@ -22,9 +22,9 @@ public partial class GameAPI
 
     // Inventory API
 
-    public InventoryItem InventoryGenerateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level) => InventoryItemGenerator.CreateSpecificItem(type, quality, level);
+    public InventoryItem InventoryGenerateSpecificItem(ItemIDs type, ItemQualityIDs quality, int level) => inventoryManager.GenerateSpecificItem(type, quality, level);
 
-    public InventoryItem InventoryGenerateItemAvailableAtLevel(int level) => InventoryItemGenerator.CreateRandomItemAvailableAtLevel(level);
+    public InventoryItem InventoryGenerateRandomItemAvailableAtLevel(int level) => inventoryManager.GenerateRandomItemAvailableAtLevel(level);
 
     public void InventoryAddItem(InventoryItem itemToAdd) => inventoryManager.AddItem(itemToAdd);
 

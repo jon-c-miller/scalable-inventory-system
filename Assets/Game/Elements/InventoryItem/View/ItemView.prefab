@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 6422248032225040965}
   - component: {fileID: 6256276247872267858}
   m_Layer: 0
-  m_Name: ItemViewLeftJustify
+  m_Name: ItemView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
